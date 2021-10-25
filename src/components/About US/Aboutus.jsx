@@ -1,4 +1,7 @@
 import styles from "../About US/aboutus.styles.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export function AboutUS() {
   return (
@@ -58,7 +61,44 @@ export function AboutUS() {
         technology or solution.
       </p>
       <h1 className="title">Our Expertise</h1>
-      <i class="fas fa-check"></i>
+      <div className="check_text">
+        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+        <span>
+          To increase Export for Small to Medium Sized Industrial Manufacturers.
+        </span>
+      </div>
+      <div className="check_text">
+        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+        <span>Customer education on client's technology</span>
+      </div>
+      <div className="check_text">
+        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+        <span>
+          A tailor made industry specific project for each of our clients.
+        </span>
+      </div>
+      <div className="check_text">
+        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+        <span>
+          12 month business Development from our Locally Based Research Teams
+          and London based staff.
+        </span>
+      </div>
+      <div className="check_text">
+        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+        <span>
+          Working on the ground at a local level with each client to identify
+          buyers.
+        </span>
+      </div>
+      <div className="check_text">
+        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+        <span>Buyer qualification.</span>
+      </div>
+      <div className="check_text">
+        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+        <span>Developing export turnover and enhancing business.</span>
+      </div>
     </div>
   );
 }
