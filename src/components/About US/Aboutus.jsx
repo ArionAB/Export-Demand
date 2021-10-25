@@ -7,97 +7,127 @@ export function AboutUS() {
   return (
     <div className="AboutUS">
       <h1 className="title">ABOUT US</h1>
-      <p>
-        MIA Group has over thirty years of export business development
-        experience. Due to Brexit we are the new bespoke division of our larger
-        parent company MIA and deliver a tailor-made service creating and
-        delivering export demand for our clients.
-      </p>
-      <div className="two_imgs">
+      <div className="who_we_are">
+        <img src={require("../../images/bees2.jpg").default} alt="two people" />
+        <div className="article_right">
+          <h2>Who we are</h2>
+          <p>
+            Cooperatives strive to maximize the benefits they generate for their
+            members (which usually involves zero-profit operation). Agricultural
+            cooperatives are therefore created in situations where farmers
+            cannot obtain essential services from IOFs (because the provision of
+            these services is judged to be unprofitable by the IOFs), or when
+            IOFs provide the services at disadvantageous terms to the farmers
+            (i.e., the services are available, but the profit-motivated prices
+            are too high for the farmers).
+            <p>
+              The former situations are characterized in economic theory as
+              market failure or missing services motive. The latter drive the
+              creation of cooperatives as a competitive yardstick or as a means
+              of allowing farmers to build countervailing market power to oppose
+              the IOFs.[1] The concept of competitive yardstick implies that
+              farmers, faced with unsatisfactory performance by IOFs, may form a
+              cooperative firm whose purpose is to force the IOFs, through
+              competition, to improve their service to farmers.
+            </p>
+          </p>
+        </div>
+      </div>
+      <div className="our_products">
+        <div className="article_left">
+          <h2>Our products</h2>
+          <p>
+            Locally grown food tastes and looks better. The crops are picked at
+            their peak and farmstead products, like cheeses, are hand-crafted
+            for best flavor. Livestock products are processed in nearby
+            facilities and typically the farmer has a direct relationship with
+            processors, overseeing quality, unlike animals processed in large
+            industrial facilities.
+            <p>
+              Local food is better for you. The shorter time between the farm
+              and your table, the less likely it is that nutrients will be lost
+              from fresh food. Food imported from far away has traveled on
+              trucks or planes and has sat in warehouses before it gets to you.
+            </p>
+          </p>
+        </div>
         <img
-          src={require("../../images/homepage-left.jpeg").default}
-          alt="two people"
-        />
-        <img
-          src={require("../../images/homepage-right.jpeg").default}
+          src={require("../../images/vegetable_stand.jpg").default}
           alt="two people"
         />
       </div>
-      <p>
-        EXPORT DEMAND'S knowledge of export markets began in 1988 with the Group
-        when Hong Kong still belonged to the UK and the Berlin wall still
-        existed. Since 1988 our Project Directors have specialized in developing
-        Export Business for Western Manufacturers in Russia, East Europe,
-        Europe, China, Asia, America, and North America.
-      </p>
-      <p>
-        Our clients find that finding and employing the right technical staff is
-        becoming harder and harder even impossible sometimes to find the right
-        team to help them grow.
-      </p>
-      <p>
-        Although our clients are extremely strong in terms of manufacturing,
-        when it comes to exporting the technology finding the right contacts and
-        qualifying those contacts can sometimes be problematic.
-      </p>
-      <p>
-        Here at EXPORT DEMAND over the years, we have built vital one to one
-        relations and we have the right connections to your local partners,
-        resellers and end-users.
-      </p>
-      <p>
-        Importantly we employ industry-specific research staff, with the
-        necessary technical expertise to build business in emerging markets and
-        to be able to generate enquiries that have a definite commercial
-        interest in your Technology or Solutions.
-      </p>
+      <div className="why_organic">
+        <img
+          src={require("../../images/vinyard.jpg").default}
+          alt="two people"
+        />
+        <div className="article_bottom">
+          <h2>Why organic?</h2>
+          <p>
+            How your food is grown or raised can have a major impact on your
+            mental and emotional health as well as the environment. Organic
+            foods often have more beneficial nutrients, such as antioxidants,
+            than their conventionally-grown counterparts and people with
+            allergies to foods, chemicals, or preservatives may find their
+            symptoms lessen or go away when they eat only organic foods.
+          </p>
+          <p>
+            Organic produce contains fewer pesticides. Chemicals such as
+            synthetic fungicides, herbicides, and insecticides are widely used
+            in conventional agriculture and residues remain on (and in) the food
+            we eat.
+          </p>
+        </div>
+      </div>
 
-      <h1 className="title">OUR MISSION</h1>
-      <p>
-        Our Mission is to increase our clients turnover in chosen export
-        markets. We achieve this by handpicking our Manufacturers, presenting
-        them as a chosen and preferred supplier and placing them with Key Buyers
-        and Local Partners looking for the best possible manufacturing
-        technology or solution.
-      </p>
-      <h1 className="title">Our Expertise</h1>
-      <div className="check_text">
-        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-        <span>
-          To increase Export for Small to Medium Sized Industrial Manufacturers.
-        </span>
+      <div className="farmers">
+        <h1>Meet Our Farmers</h1>
+        <div className="farmer_1">
+          <img
+            src={require("../../images/farmer_1.jpg").default}
+            alt="two people"
+          />
+          <h2>John Deere</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries
+          </p>
+        </div>
+        <div className="farmer_2">
+          <img
+            src={require("../../images/farmer_2.jpg").default}
+            alt="two people"
+          />
+          <h2>Scoot Smith</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries
+          </p>
+        </div>
+        <div className="farmer_3">
+          <img
+            src={require("../../images/farmer_3.jpg").default}
+            alt="two people"
+          />
+          <h2>John Cena</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries
+          </p>
+        </div>
       </div>
-      <div className="check_text">
-        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-        <span>Customer education on client's technology</span>
-      </div>
-      <div className="check_text">
-        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-        <span>
-          A tailor made industry specific project for each of our clients.
-        </span>
-      </div>
-      <div className="check_text">
-        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-        <span>
-          12 month business Development from our Locally Based Research Teams
-          and London based staff.
-        </span>
-      </div>
-      <div className="check_text">
-        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-        <span>
-          Working on the ground at a local level with each client to identify
-          buyers.
-        </span>
-      </div>
-      <div className="check_text">
-        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-        <span>Buyer qualification.</span>
-      </div>
-      <div className="check_text">
-        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-        <span>Developing export turnover and enhancing business.</span>
+      <div className="footer">
+        <h1>We Need More Hands!</h1>
+        <button className="apply">Apply</button>
       </div>
     </div>
   );

@@ -1,33 +1,92 @@
 .header {
-  background-image: url(../../images/industry_40_smaert_factory.jpg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  background-image: url(../../images/header.jpg);
   width: auto;
   height: 35rem;
   overflow: hidden;
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
 }
 
-button {
-  box-shadow: 3px 4px 0px 0px #1564ad;
-  background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
-  background-color: #79bbff;
-  border-radius: 5px;
-  border: 1px solid #337bc4;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 17px;
-  font-weight: bold;
-  padding: 12px 44px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #528ecc;
+.header-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
-button:hover {
-  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
-  background-color: #378de5;
+
+.title {
+  display: flex;
+  justify-content: center;
 }
-button:active {
-  position: relative;
-  top: 1px;
+
+.who_we_are {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  gap: 30px;
+
+  .article_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    align-self: flex-start;
+  }
+
+  p {
+    letter-spacing: 0.1em;
+    line-height: 1.5em;
+  }
+}
+
+.our_products {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  gap: 30px;
+
+  .article_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  h2 {
+    align-self: flex-start;
+  }
+
+  p {
+    letter-spacing: 0.1em;
+    line-height: 1.5em;
+  }
+}
+
+.why_organic {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  gap: 30px;
+
+  .article_bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  h2 {
+    align-self: flex-start;
+  }
+
+  p {
+    letter-spacing: 0.1em;
+    line-height: 1.5em;
+  }
 }

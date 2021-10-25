@@ -1,5 +1,4 @@
 import { Link, NavLink } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 import styles from "../nav/nav.styles.scss";
 
@@ -7,7 +6,7 @@ export function Nav() {
   return (
     <div className="nav">
       <Link className="logo-container" to="/">
-        <Logo className="logo" />
+        <img src={require("../../images/logo.jpg").default} alt="Logo"></img>
       </Link>
       <div className="options">
         <Link className="option" to="/home">
@@ -16,18 +15,16 @@ export function Nav() {
         <Link className="option" to="/about">
           About Us
         </Link>
-        <Link className="option" to="/industry">
-          Industry
+        <Link className="option" to="/farmers">
+          Farmers
         </Link>
         <Link className="option" to="/project">
-          The Project
+          Our Goal
         </Link>
         <Link className="option" to="/commerce">
-          Commerce
+          Organic
         </Link>
-        <Link className="option" to="/contact">
-          Contact
-        </Link>
+
         <Link className="option" to="/signin">
           Sign In
         </Link>
