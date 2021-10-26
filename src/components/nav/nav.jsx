@@ -1,8 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
+import { Link, NavLink, Route } from "react-router-dom";
+import { farmers } from "../../pages/farmers/farmers";
+import { withRouter } from "react-router";
 
 import styles from "../nav/nav.styles.scss";
 
-export function Nav() {
+export const Nav = (props) => {
+  console.log(props);
   return (
     <div className="nav">
       <Link className="logo-container" to="/">
@@ -31,4 +35,6 @@ export function Nav() {
       </div>
     </div>
   );
-}
+};
+
+// onClick={() => props.history.push("/farmers")}

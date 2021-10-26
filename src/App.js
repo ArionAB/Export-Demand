@@ -1,17 +1,19 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Nav } from "./components/nav/nav";
-import { Header } from "./components/header/header";
+import { HomePage } from "./pages/homepage/homepage";
+import { farmers } from "./pages/farmers/farmers";
 
 import "./App.scss";
-import { AboutUS } from "./components/About US/Aboutus";
 
 function App() {
   return (
     <div className="container">
+      <Nav />
       <Router>
-        <Nav />
-        <Header />
-        <AboutUS />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/farmers" component={farmers} />
+        </Switch>
       </Router>
     </div>
   );
