@@ -79,50 +79,73 @@ export function AboutUS() {
           </p>
         </div>
       </div>
+      <div className="certifications">
+        <h1>Our Certificates</h1>
+        <div className="for_logos">
+          <img
+            src={require("../../images/usda.jpg").default}
+            alt="two people"
+          />
+          <img
+            src={require("../../images/organic.jpg").default}
+            alt="two people"
+          />
+          <img
+            src={require("../../images/Brc_food.png").default}
+            alt="two people"
+          />
+          <img
+            src={require("../../images/soil.jpg").default}
+            alt="two people"
+          />
+        </div>
+      </div>
 
       <div className="farmers">
         <h1>Meet Our Farmers</h1>
-        <div className="farmer_1">
-          <img
-            src={require("../../images/farmer_1.jpg").default}
-            alt="two people"
-          />
-          <h2>John Deere</h2>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries
-          </p>
-        </div>
-        <div className="farmer_2">
-          <img
-            src={require("../../images/farmer_2.jpg").default}
-            alt="two people"
-          />
-          <h2>Scoot Smith</h2>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries
-          </p>
-        </div>
-        <div className="farmer_3">
-          <img
-            src={require("../../images/farmer_3.jpg").default}
-            alt="two people"
-          />
-          <h2>John Cena</h2>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries
-          </p>
+        <div className="farm_wrap">
+          <div className="farmer">
+            <img
+              src={require("../../images/farmer_1.12.jpg").default}
+              alt="two people"
+            />
+            <h2>John Deere</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries
+            </p>
+          </div>
+          <div className="farmer">
+            <img
+              src={require("../../images/farmer_2.1.jpg").default}
+              alt="two people"
+            />
+            <h2>Scoot Smith</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries
+            </p>
+          </div>
+          <div className="farmer">
+            <img
+              src={require("../../images/farmer_4.1.jpg").default}
+              alt="two people"
+            />
+            <h2>John Cena</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries
+            </p>
+          </div>
         </div>
       </div>
       <div className="footer">
