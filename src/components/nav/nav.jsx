@@ -1,24 +1,23 @@
 import React from "react";
-import { Link, NavLink, Route } from "react-router-dom";
-import { farmers } from "../../pages/farmers/farmers";
+import { Link } from "react-router-dom";
+import { farmers } from "../farmers/farmers";
 import { withRouter } from "react-router";
 
 import styles from "../nav/nav.styles.scss";
-
-export const Nav = (props) => {
-  console.log(props);
+export const Nav = () => {
   return (
     <div className="nav">
       <Link className="logo-container" to="/">
         <img src={require("../../images/logo.jpg").default} alt="Logo"></img>
       </Link>
       <div className="options">
-        <Link className="option" to="/home">
+        <Link className="option" to="/">
           Home
         </Link>
         <Link className="option" to="/about">
           About Us
         </Link>
+
         <Link className="option" to="/farmers">
           Farmers
         </Link>
@@ -37,4 +36,6 @@ export const Nav = (props) => {
   );
 };
 
+//we need to import useHistory and it will work
+// let history = useHistory();
 // onClick={() => props.history.push("/farmers")}
