@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { farmers } from "../farmers/farmers";
+import { farmers } from "../../pages/farmers/farmers";
 import { withRouter } from "react-router";
 
 import styles from "../nav/nav.styles.scss";
