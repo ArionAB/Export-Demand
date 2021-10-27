@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { farmers } from "../../pages/farmers/farmers";
-import { withRouter } from "react-router";
+import { auth } from "../../firebase/firebase.utils";
 
 import styles from "../nav/nav.styles.scss";
-export const Nav = () => {
+export const Nav = ({ currentUser }) => {
   return (
     <div className="nav">
       <Link className="logo-container" to="/">
@@ -27,10 +27,15 @@ export const Nav = () => {
         <Link className="option" to="/commerce">
           Organic
         </Link>
-
-        <Link className="option" to="/signin">
-          Sign In
-        </Link>
+        {currentUser ? (
+          <div className="option" onClick={() => auth.signOut()}>
+            Sign Out
+          </div>
+        ) : (
+          <Link className="option" to="/signin">
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );

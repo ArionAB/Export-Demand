@@ -10,18 +10,20 @@ import "./App.scss";
 
 const App = ({ props }) => {
   const [currentUser, setCurrentUser] = useState();
-  let unsuscribeFromAuth = null;
+  // let unsuscribeFromAuth = null;
 
-  useEffect(() => {}, []);
-  unsuscribeFromAuth = auth.onAuthStateChanged(function (user) {
-    setCurrentUser(user);
-    console.log(user);
-  });
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(function (user) {
+      setCurrentUser(user);
+      console.log(user);
+    });
+    return unsubscribe;
+  }, []);
 
   return (
     <div className="container">
       <Router>
-        <Nav />
+        <Nav currentUser={currentUser} />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/farmers" component={farmers} />

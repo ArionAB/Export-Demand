@@ -40,9 +40,14 @@ export const SignIn = () => {
           required
           label="Password"
         />
-
-        <button type="Submit">Submit Form</button>
-        <button onClick={signInWithGoogle}>Sign in with Google</button>
+        <div className="buttons">
+          <button type="Submit" className="sign-btn">
+            Sign In
+          </button>
+          <button onClick={signInWithGoogle} className="google-btn">
+            Sign in with Google
+          </button>
+        </div>
       </form>
     </div>
   );
