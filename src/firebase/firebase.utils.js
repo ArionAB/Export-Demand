@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import "firebase/compat/storage";
+import "firebase/compat/database";
 
 const config = {
   apiKey: "AIzaSyDx1N-eevUW5OKup--ACTEdjK4japaKp8g",
@@ -13,8 +14,19 @@ const config = {
   measurementId: "G-4CJY7CZEKV",
 };
 
+let firebaseCache;
+
+export const getFirebase = () => {
+  if (firebaseCache) {
+    return firebaseCache;
+  }
+  firebase.initializeApp(config);
+  firebaseCache = firebase;
+  return firebase;
+};
 firebase.initializeApp(config);
 
+export const database = firebase.database();
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 export const storage = firebase.storage();

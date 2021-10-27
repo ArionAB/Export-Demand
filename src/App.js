@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Nav } from "./components/nav/nav";
 import { HomePage } from "./pages/homepage/homepage";
-import { farmers } from "./pages/farmers/farmers";
+import { Farmers } from "./pages/farmers/farmers";
 import { SignInSignUp } from "./pages/sign_in_up/sign_in_up";
 import { auth } from "./firebase/firebase.utils";
+import { Post } from "./pages/farmers/post";
+import { noMatch } from "./components/noMatch/noMatch";
 
 import "./App.scss";
 
@@ -26,8 +28,10 @@ const App = ({ props }) => {
         <Nav currentUser={currentUser} />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/farmers" component={farmers} />
+          <Route exact path="/farmers" component={Farmers} />
+          <Route exact path="/farmers/:url" component={Post} />
           <Route exact path="/signin" component={SignInSignUp} />
+          <Route path="/404" component={noMatch} />
         </Switch>
       </Router>
     </div>
