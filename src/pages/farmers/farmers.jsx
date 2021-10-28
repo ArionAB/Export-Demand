@@ -11,7 +11,7 @@ export const Farmers = () => {
     getFirebase()
       .database()
       .ref("/posts")
-      .orederByChild("dateFormatted")
+      .orderByChild("dateFormatted")
       .once("value")
       .then((snapshot) => {
         let posts = [];
