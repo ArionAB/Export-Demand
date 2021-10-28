@@ -27,4 +27,19 @@ export const Farmers = () => {
   if (loading) {
     return <h1>Loading...</h1>;
   }
+  return (
+    <>
+      <h1>Farmer's Market</h1>
+      {farmPosts.map((farmPost) => (
+        <section key={farmPost.url}>
+          <img src={farmPost.image}></img>
+          <h2>{farmPost.title}</h2>
+          <h3>{farmPost.product}</h3>
+          <p>{farmPost.content}</p>
+          <p>{farmPost.phone}</p>
+          <p>{farmPost.email}</p>
+        </section>
+      ))}
+    </>
+  );
 };

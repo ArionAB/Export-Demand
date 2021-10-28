@@ -35,7 +35,7 @@ export const Create = ({ history }) => {
       .ref()
       .child(`posts/${state.url}`)
       .set(newPost)
-      .then(() => history.push(`/farmers`));
+      .then(() => history.push("/farmers"));
   };
 
   return (
