@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router";
+import { getFirebase } from "../../firebase/firebase.utils";
 
 export const Post = ({ match }) => {
   const url = match.params.url; //Components named in Route elements will have a match prop.

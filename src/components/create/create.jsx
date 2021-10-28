@@ -23,9 +23,7 @@ export const Create = ({ history }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  };
 
-  const createPost = () => {
     console.log({ ...state });
     const newPost = {
       ...state,
@@ -101,7 +99,7 @@ export const Create = ({ history }) => {
             value={state.email}
             required
           />
-          <button onClick={createPost}>Submit</button>
+          <button onSubmit={handleSubmit}>Submit</button>
         </form>
       </div>
     </>
