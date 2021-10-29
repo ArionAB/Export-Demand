@@ -3,7 +3,7 @@ import { FormInput } from "../form-input/form-input";
 import { getFirebase } from "../../firebase/firebase.utils";
 
 export const Create = ({ history }) => {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     title: "",
     url: "",
     image: "",

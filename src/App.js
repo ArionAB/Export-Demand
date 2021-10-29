@@ -12,7 +12,7 @@ import { Edit } from "./components/create/edit";
 
 import "./App.scss";
 
-const App = ({ props }) => {
+const App = () => {
   const [currentUser, setCurrentUser] = useState();
   // let unsuscribeFromAuth = null;
 
@@ -31,7 +31,7 @@ const App = ({ props }) => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/farmers/" component={Farmers} />
-          <Route exact path="/asdadas" component={Post} />
+
           <Route exact path="/signin" component={SignInSignUp} />
           <Route exact path="/create" component={Create} />
           <Route exact path="/edit/:url" component={Edit} />
