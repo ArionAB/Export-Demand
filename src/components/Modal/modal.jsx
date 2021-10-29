@@ -1,19 +1,38 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FormInput } from "../form-input/form-input";
 import { getFirebase } from "../../firebase/firebase.utils";
+import { useParams } from "react-router-dom";
 
 import styles from "./modal.styles.scss";
 
 export const Modal = (props, history) => {
+  const [loading, setLoading] = useState(true);
+  const [currentPost, setCurrrentPost] = useState({});
+  const { url } = useParams();
+
+  useEffect(() => {
+    getFirebase()
+      .database()
+      .ref()
+      .child(`posts/`)
+      .once("value")
+      .then((snapshot) => {
+        if (snapshot.val()) {
+          setCurrrentPost(snapshot.val());
+        }
+        setLoading(false);
+      });
+  }, []);
+
   const [state, setState] = useState({
-    title: "",
-    url: "",
-    image: "",
-    product: "",
-    content: "",
-    phone: "",
-    email: "",
+    title: currentPost.title,
+    url: currentPost.url,
+    image: currentPost.image,
+    product: currentPost.product,
+    content: currentPost.content,
+    phone: currentPost.phone,
+    email: currentPost.email,
   });
 
   function handleChange(e) {
@@ -34,17 +53,21 @@ export const Modal = (props, history) => {
     getFirebase()
       .database()
       .ref()
-      .child(`posts/${state.url}`)
+      .child(`posts/`)
       .set(newPost)
-      .then(() => history.push("/farmers"));
+      .then(() => history.push(`/farmers`));
   };
   if (!props.show) {
     return null;
   }
 
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <>
-      <div className="modal" onClick={props.onClose}>
+      <div className="modal">
         <h1>Update your information</h1>
         <form onSubmit={handleSubmit}>
           <FormInput
