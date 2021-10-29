@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getFirebase } from "../../firebase/firebase.utils";
+import { Modal } from "../../components/Modal/modal";
 
 import styles from "./farmers.styles.scss";
 
 export const Farmers = () => {
   const [loading, setLoading] = useState(true);
   const [farmPosts, setFarmPosts] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (loading && !farmPosts.length) {
@@ -37,9 +39,9 @@ export const Farmers = () => {
         {farmPosts.map((farmPost) => (
           <section key={farmPost.url}>
             <h2>{farmPost.title}</h2>
-            <Link className="edit_link" to={`/edit/${farmPost.url}`}>
-              Edit
-            </Link>
+            <button onClick={() => setShow(true)}>Edit Information</button>
+            <Modal onClose={() => setShow(false)} show={show} />
+
             <img src={farmPost.image}></img>
             <h3>Products: {farmPost.product}</h3>
             <p>{farmPost.content}</p>
@@ -51,3 +53,7 @@ export const Farmers = () => {
     </>
   );
 };
+
+/* { // <Link className="edit_link" to={`/edit/${farmPost.url}`}>
+  //   Edit
+    // </Link> } */
