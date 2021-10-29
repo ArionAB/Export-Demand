@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { getFirebase } from "../../firebase/firebase.utils";
+
+import styles from "./farmers.styles.scss";
 
 export const Farmers = () => {
   const [loading, setLoading] = useState(true);
@@ -36,6 +37,9 @@ export const Farmers = () => {
         {farmPosts.map((farmPost) => (
           <section key={farmPost.url}>
             <h2>{farmPost.title}</h2>
+            <Link className="edit_link" to={`/edit/${farmPost.url}`}>
+              Edit
+            </Link>
             <img src={farmPost.image}></img>
             <h3>Products: {farmPost.product}</h3>
             <p>{farmPost.content}</p>
