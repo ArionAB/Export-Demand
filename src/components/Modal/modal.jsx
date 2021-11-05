@@ -21,14 +21,7 @@ export const Modal = (props, match) => {
     email: "",
   });
 
-  getFirebase().database().ref();
-
   useEffect(() => {
-    /*  const getPosts = async () => {
-      const data = await getDocs();
-    };
-
-    getPosts(); */
     getFirebase()
       .database()
       .ref("posts")
@@ -63,7 +56,7 @@ export const Modal = (props, match) => {
       <div className="modal">
         <h1>Update your information</h1>
         {state
-          ? state.map((farm, index) => <ModalForm farm={farm} key={index} />)
+          ? state.map((farm, id) => <ModalForm farm={farm} key={id} />)
           : ""}
       </div>
     </>

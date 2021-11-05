@@ -10,17 +10,6 @@ import Post from "./post";
 export const Farmers = () => {
   const [farmPosts, setFarmPosts] = useState();
 
-  const [show, setShow] = useState(false);
-
-  /*   const addOrEdit = (obj) => {
-    getFirebase()
-      .database()
-      .ref()
-      .child("posts")
-      .push(obj, (err) => {
-        if (err) console.log(err);
-      });
-  }; */
   useEffect(() => {
     getFirebase()
       .database()
