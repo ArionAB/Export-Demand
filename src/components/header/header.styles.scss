@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  background-image: url(../../images/header.jpg);
+  width: auto;
+  height: 35rem;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
