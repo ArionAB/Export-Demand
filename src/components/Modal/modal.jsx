@@ -3,14 +3,9 @@ import { FormInput } from "../form-input/form-input";
 import { useState } from "react";
 import { getFirebase } from "../../firebase/firebase.utils";
 
-import { PostContext } from "../../Context/postContext";
-import { useContext } from "react";
-
 import styles from "./modal.styles.scss";
 
 export const Modal = (props) => {
-  const { addPost } = useContext(PostContext);
-
   const initialFieldValues = {
     title: "",
     image: "",

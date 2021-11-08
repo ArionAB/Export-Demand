@@ -1,27 +1,25 @@
 import react from "react";
 import { useState } from "react";
-import { Modal } from "../../components/Modal/modal";
-import { ModalForm } from "../../components/Modal/modal-form";
+import { EditModal } from "../../components/Modal/editModal";
+
 import { getFirebase } from "../../firebase/firebase.utils";
 
 export default function Post({ farm }) {
-  const [newTaskName, setNewTaskName] = useState("");
+  const [show, setShow] = useState(false);
   const deletePost = () => {
     getFirebase().database().ref("posts").child(farm.id).remove();
   };
 
   const editPost = () => {
     setShow(true);
-    getFirebase().database().ref("posts").child(farm.id).update({});
+    getFirebase().database().ref("posts").child(farm.id).update();
   };
-  const [show, setShow] = useState(false);
-
+  console.log("FARM-ID", farm.id);
   return (
     <div id={farm.id}>
       <h2>{farm.title}</h2>
-      <button id={farm.id} key={farm.id} onClick={editPost}>
-        Edit Information
-      </button>
+      <button onClick={() => setShow(true)}>Update your information</button>
+      <EditModal thePost={farm} onClose={() => setShow(false)} show={show} />
 
       <img src={farm.image}></img>
       <h3>Products: {farm.product}</h3>

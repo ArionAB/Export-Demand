@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { Modal } from "../../components/Modal/modal";
@@ -10,10 +10,15 @@ import { useContext } from "react";
 import { PostContext } from "../../Context/postContext";
 
 import styles from "./farmers.styles.scss";
+import { EditModal } from "../../components/Modal/editModal";
 
 export const Farmers = () => {
   const { farmPosts } = useContext(PostContext);
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(false); //Closes form after user submits data
+  }, [farmPosts]);
 
   return (
     <>
@@ -24,6 +29,7 @@ export const Farmers = () => {
         {farmPosts
           ? farmPosts.map((farm, index) => (
               <div key={farm.id}>
+                <EditModal farm={farm} />
                 <Post farm={farm} />
               </div>
             ))
