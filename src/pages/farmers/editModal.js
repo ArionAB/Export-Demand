@@ -1,14 +1,14 @@
 import React from "react";
-import { FormInput } from "../form-input/form-input";
+import { FormInput } from "../../components/form-input/form-input";
 import { useState, useContext } from "react";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { PostContext } from "../../Context/postContext";
 
 import styles from "./modal.styles.scss";
 
-export const EditModal = (props, { thePost, farm }) => {
+export const EditModal = (props, { farm }) => {
   //   const id = thePost.id; undefined
-  console.log(farm.id);
+  console.log(farm);
   /*  const [state, setState] = useState({
     title: farm.state,
     image: farm.state,

@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { PostContext } from "../../Context/postContext";
 
 import styles from "./farmers.styles.scss";
-import { EditModal } from "../../components/Modal/editModal";
+import { EditModal } from "./editModal";
 
 export const Farmers = () => {
   const { farmPosts } = useContext(PostContext);
@@ -29,7 +29,14 @@ export const Farmers = () => {
         {farmPosts
           ? farmPosts.map((farm, index) => (
               <div key={farm.id}>
-                <EditModal farm={farm} />
+                <button onClick={() => setShow(true)}>
+                  Update your information
+                </button>
+                <EditModal
+                  farm={farm}
+                  onClose={() => setShow(false)}
+                  show={show}
+                />
                 <Post farm={farm} />
               </div>
             ))
