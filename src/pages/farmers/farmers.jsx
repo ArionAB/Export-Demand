@@ -1,36 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { Modal } from "../../components/Modal/modal";
+
 import { Create } from "./create";
 
-import styles from "./farmers.styles.scss";
 import Post from "./post";
+import { useContext } from "react";
+import { PostContext } from "../../Context/postContext";
+
+import styles from "./farmers.styles.scss";
 
 export const Farmers = () => {
-  const [farmPosts, setFarmPosts] = useState();
+  const { farmPosts } = useContext(PostContext);
+  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    getFirebase()
-      .database()
-      .ref("posts")
-      .on("value", (snapshot) => {
-        const posts = snapshot.val();
-        const farmPosts = [];
-        for (let id in posts) {
-          farmPosts.push({ id, ...posts[id] });
-        }
-        if (snapshot.val() != null) setFarmPosts(farmPosts);
-        console.log("POST LIST", farmPosts);
-        console.log("snap", snapshot.val());
-      });
-  }, []);
   return (
     <>
       <h1>Farmer's Market</h1>
+      <button onClick={() => setShow(true)}>Add your farm</button>
+      <Modal onClose={() => setShow(false)} show={show} />
       <div className="container">
         {farmPosts
-          ? farmPosts.map((farm, index) => <Post farm={farm} key={index} />)
+          ? farmPosts.map((farm, index) => (
+              <div key={farm.id}>
+                <Post farm={farm} />
+              </div>
+            ))
           : ""}
       </div>{" "}
     </>

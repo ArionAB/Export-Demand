@@ -6,7 +6,7 @@ import { Farmers } from "./farmers";
 export const Create = () => {
   const initialFieldValues = {
     title: "",
-    url: "",
+
     image: "",
     product: "",
     content: "",

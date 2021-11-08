@@ -8,6 +8,7 @@ import { auth } from "./firebase/firebase.utils";
 import { Post } from "./pages/farmers/post";
 import { noMatch } from "./components/noMatch/noMatch";
 import { Create } from "./pages/farmers/create";
+import { PostContextProvider } from "./Context/postContext";
 
 import "./App.scss";
 
@@ -29,8 +30,9 @@ const App = () => {
         <Nav currentUser={currentUser} />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/farmers/" component={Farmers} />
-
+          <PostContextProvider>
+            <Route exact path="/farmers/" component={Farmers} />
+          </PostContextProvider>
           <Route exact path="/signin" component={SignInSignUp} />
           <Route exact path="/create" component={Create} />
 
