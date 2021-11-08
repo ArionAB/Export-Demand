@@ -19,7 +19,6 @@ export default function Post({ farm }) {
   };
 
   const EditModal = (props) => {
-    const id = farm.id;
     const [title, setTitle] = useState(farm.title);
     const [image, setImage] = useState(farm.image);
     const [product, setProduct] = useState(farm.product);
