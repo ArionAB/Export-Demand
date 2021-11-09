@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { getFirebase } from "../../firebase/firebase.utils";
 import { Modal } from "../../components/Modal/modal";
-
-import { Create } from "./create";
-
 import Post from "./post";
 import { useContext } from "react";
 import { PostContext } from "../../Context/postContext";
 
 import styles from "./farmers.styles.scss";
-import { EditModal } from "./editModal";
 
 export const Farmers = () => {
   const { farmPosts } = useContext(PostContext);

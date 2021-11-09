@@ -1,11 +1,9 @@
-import react from "react";
-import { useState, useContext } from "react";
-import { EditModal } from "./editModal";
-import { PostContext } from "../../Context/postContext";
+import React from "react";
+import { useState } from "react";
 import { FormInput } from "../../components/form-input/form-input";
-import styles from "./modal.styles.scss";
-
 import { getFirebase } from "../../firebase/firebase.utils";
+
+import styles from "./modal.styles.scss";
 
 export default function Post({ farm }) {
   const [show, setShow] = useState(false);
@@ -13,73 +11,99 @@ export default function Post({ farm }) {
     getFirebase().database().ref("posts").child(farm.id).remove();
   };
 
-  const editPost = () => {
-    setShow(true);
-    getFirebase().database().ref("posts").child(farm.id).update();
-  };
-
   const EditModal = (props) => {
-    const [title, setTitle] = useState(farm.title);
-    const [image, setImage] = useState(farm.image);
-    const [product, setProduct] = useState(farm.product);
-    const [content, Contentset] = useState(farm.content);
-    const [phone, setPhone] = useState(farm.phone);
-    const [email, setEmail] = useState(farm.email);
+    const initialFieldValues = {
+      title: farm.title,
+      image: farm.image,
+      product: farm.product,
+      content: farm.content,
+      phone: farm.phone,
+      email: farm.email,
+    };
+    const [values, setValues] = useState(initialFieldValues);
 
-    const { updatePost } = useContext(PostContext);
+    function handleChange(e) {
+      const { name, value } = e.target;
+      setValues({
+        ...values,
+        [name]: value,
+      });
+    }
+
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      const obj = {
+        ...values,
+      };
+      getFirebase()
+        .database()
+        .ref("posts")
+        .child(farm.id)
+        .update(obj, (err) => {
+          if (err) console.log(err);
+        });
+    };
+
     if (!props.show) {
       return null;
     }
+
     return (
       <>
         <div className="modal">
           <h1>Update your information</h1>
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <FormInput
               id="title"
               label="Title"
               name="title"
               type="text"
-              value={title}
+              value={values.title}
+              onChange={handleChange}
               required
             />
             <FormInput
               label="Image"
               name="image"
               type="text"
-              value={image}
+              value={values.image}
+              onChange={handleChange}
               required
             />
             <FormInput
               label="Product"
               name="product"
               type="text"
-              value={product}
+              value={values.product}
+              onChange={handleChange}
               required
             />
             <FormInput
               label="Describe your products"
               name="content"
               type="text"
-              value={content}
+              value={values.content}
+              onChange={handleChange}
               required
             />
             <FormInput
               label="Phone"
               name="phone"
               type="number"
-              value={phone}
+              value={values.phone}
+              onChange={handleChange}
               required
             />
             <FormInput
               label="Email"
               name="email"
               type="email"
-              value={email}
+              value={values.email}
+              onChange={handleChange}
               required
             />
             <button type="submit" value="Save">
-              Save
+              Update
             </button>
             <button onClick={props.onClose}>Close</button>
           </form>

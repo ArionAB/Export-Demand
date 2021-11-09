@@ -23,14 +23,8 @@ export const PostContextProvider = (props) => {
       });
   }, []);
 
-  const updatePost = (id, updatedPost) => {
-    setFarmPosts(
-      farmPosts.map((farm) => (farm.id === id ? updatedPost : farm))
-    );
-  };
-
   return (
-    <PostContext.Provider value={{ farmPosts, updatePost }}>
+    <PostContext.Provider value={{ farmPosts }}>
       {props.children}
     </PostContext.Provider>
   );
