@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FormInput } from "../../components/form-input/form-input";
 import { getFirebase } from "../../firebase/firebase.utils";
 
@@ -7,6 +7,7 @@ import styles from "./modal.styles.scss";
 
 export default function Post({ farm }) {
   const [show, setShow] = useState(false);
+
   const deletePost = () => {
     getFirebase().database().ref("posts").child(farm.id).remove();
   };
@@ -29,8 +30,11 @@ export default function Post({ farm }) {
         [name]: value,
       });
     }
+    /*    useEffect(() => {
+      setShow(false); //Closes form after user submits data
+    }, []); */
 
-    const handleFormSubmit = (e) => {
+    const updatePost = (e) => {
       e.preventDefault();
       const obj = {
         ...values,
@@ -52,7 +56,7 @@ export default function Post({ farm }) {
       <>
         <div className="modal">
           <h1>Update your information</h1>
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={updatePost}>
             <FormInput
               id="title"
               label="Title"

@@ -5,9 +5,7 @@ import { HomePage } from "./pages/homepage/homepage";
 import { Farmers } from "./pages/farmers/farmers";
 import { SignInSignUp } from "./pages/sign_in_up/sign_in_up";
 import { auth } from "./firebase/firebase.utils";
-import { Post } from "./pages/farmers/post";
 import { noMatch } from "./components/noMatch/noMatch";
-import { Create } from "./pages/farmers/create";
 import { PostContextProvider } from "./Context/postContext";
 
 import "./App.scss";
@@ -34,8 +32,6 @@ const App = () => {
             <Route exact path="/farmers/" component={Farmers} />
           </PostContextProvider>
           <Route exact path="/signin" component={SignInSignUp} />
-          <Route exact path="/create" component={Create} />
-
           <Route path="" component={noMatch} />
         </Switch>
       </Router>
