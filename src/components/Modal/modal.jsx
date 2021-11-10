@@ -33,7 +33,6 @@ export const Modal = (props) => {
     getFirebase()
       .database()
       .ref("posts")
-
       .push(obj, (err) => {
         if (err) console.log(err);
       });

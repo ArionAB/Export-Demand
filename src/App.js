@@ -4,7 +4,7 @@ import { Nav } from "./components/nav/nav";
 import { HomePage } from "./pages/homepage/homepage";
 import { Farmers } from "./pages/farmers/farmers";
 import { SignInSignUp } from "./pages/sign_in_up/sign_in_up";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { noMatch } from "./components/noMatch/noMatch";
 import { PostContextProvider } from "./Context/postContext";
 
@@ -15,9 +15,11 @@ const App = () => {
   // let unsuscribeFromAuth = null;
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(function (user) {
-      setCurrentUser(user);
-      console.log(user);
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      createUserProfileDocument(user);
+      // setCurrentUser(user);
+
+      console.log("user", user); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
     });
     return unsubscribe;
   }, []);
@@ -30,8 +32,8 @@ const App = () => {
           <Route exact path="/" component={HomePage} />
           <PostContextProvider>
             <Route exact path="/farmers/" component={Farmers} />
+            <Route exact path="/signin" component={SignInSignUp} />
           </PostContextProvider>
-          <Route exact path="/signin" component={SignInSignUp} />
           <Route path="" component={noMatch} />
         </Switch>
       </Router>

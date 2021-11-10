@@ -10,6 +10,7 @@ export const Farmers = () => {
   const { farmPosts } = useContext(PostContext);
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     setShow(false); //Closes form after user submits data

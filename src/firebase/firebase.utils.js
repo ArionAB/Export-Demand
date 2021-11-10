@@ -28,16 +28,6 @@ export const getFirebase = () => {
 };
 firebase.initializeApp(config);
 
-export const getPostByUrl = async (url) => {
-  getFirebase();
-
-  return await firebase
-    .database()
-    .ref(`posts/${url}`)
-    .once("value")
-    .then((snapshot) => snapshot.val());
-};
-
 export const database = firebase.database();
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
@@ -47,7 +37,32 @@ const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" }); //to always trigger the google pop up whenever we are using this
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export const createUserWithEmailandPassword =
-  new firebase.auth.EmailAuthProvider();
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+  const userRef = database.ref().child(`Users/${userAuth.uid}`);
+
+  const snapShot = await userRef.get();
+
+  console.log(snapShot); //id of the user that is logged in
+  if (!snapShot.val() !== null) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
+    } //we are checking if there is a user, if there isn't we create one
+  }
+  return userRef;
+};
+
+/* export const createUserWithEmailandPassword =
+  new firebase.auth.EmailAuthProvider(); */
 
 export default firebase;
