@@ -30,13 +30,6 @@ export const Farmers = () => {
       <button onClick={() => setShow(true)}>Add your farm</button>
       <Modal onClose={() => setShow(false)} show={show} />
       <div className="reverse">
-        <div className="container">
-          {farmPosts
-            ? farmPosts.map((farm, index) => (
-                <div className="test" key={index}></div>
-              ))
-            : ""}
-        </div>
         {farmPosts
           ? farmPosts
               .filter((farm) => {
