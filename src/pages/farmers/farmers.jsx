@@ -29,33 +29,33 @@ export const Farmers = () => {
       />
       <button onClick={() => setShow(true)}>Add your farm</button>
       <Modal onClose={() => setShow(false)} show={show} />
-      <div className="container">
+      <div className="reverse">
+        <div className="container">
+          {farmPosts
+            ? farmPosts.map((farm, index) => (
+                <div className="test" key={index}></div>
+              ))
+            : ""}
+        </div>
         {farmPosts
-          ? farmPosts.map((farm, index) => (
-              <div className="test" key={farm.id}>
-                <Post farm={farm} />
-                {
-                  (console.log("farmPosts", farmPosts),
-                  farmPosts
-                    .filter((farm) => {
-                      if (search === "") {
-                        return farm;
-                      } else if (
-                        farm.title.toLowerCase().includes(search.toLowerCase())
-                      ) {
-                        return farm;
-                      }
-                    })
-                    .map((farm, index) => (
-                      <div className="Filtered" key={index}>
-                        <Post farm={farm} />
-                      </div>
-                    )))
+          ? farmPosts
+              .filter((farm) => {
+                if (search === "") {
+                  return farm;
+                } else if (
+                  farm.title.toLowerCase().includes(search.toLowerCase()) ||
+                  farm.product.toLowerCase().includes(search.toLowerCase())
+                ) {
+                  return farm;
                 }
-              </div>
-            ))
-          : ""}
-      </div>{" "}
+              })
+              .map((farm, index) => (
+                <div className="Filtered" key={index}>
+                  <Post farm={farm} />
+                </div>
+              ))
+          : ""}{" "}
+      </div>
     </>
   );
 };
