@@ -8,10 +8,12 @@ import styles from "./modal.styles.scss";
 
 export const Modal = (props) => {
   const [currentUser, setCurrentUser] = useState();
-  // let unsuscribeFromAuth = null;
-
   const [id, setId] = useState("");
-  useEffect(() => {
+  // let unsuscribeFromAuth = null;
+  /*   console.log(id);
+  console.log(onId); */
+  // const [id, setId] = useState("");
+  /*   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -20,13 +22,39 @@ export const Modal = (props) => {
         });
         // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
       } else setCurrentUser(userAuth);
-      console.log("DisplayName + Key", currentUser);
+
       // console.log("currentUser + key", currentUser.key);
       console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      // const id = userAuth.uid;
+      // setId(id);
+      // console.log(id);
+    });
+    return unsubscribe;
+  }, []); */
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.on("value", (snapShot) => {
+          setCurrentUser({ key: snapShot.key, ...snapShot.val() });
+        });
+        // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
+      }
+      if (setCurrentUser(userAuth)) {
+        console.log("userAuth + key", userAuth.uid);
+        //below line fixed my issue of getting an error if
+        //i was trying to acces the app and i was not log out
+      } else if (!userAuth && typeof window !== "undefined") {
+        return null;
+      }
+      console.log("userAuth + key", userAuth.uid);
+      // console.log("currentUser + key", currentUser.key);
+      console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
       const id = userAuth.uid;
       setId(id);
-      console.log(id);
     });
     return unsubscribe;
   }, []);

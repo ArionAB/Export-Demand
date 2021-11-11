@@ -13,7 +13,7 @@ import "./App.scss";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState();
-  // let unsuscribeFromAuth = null;
+  const [id, setId] = useState("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
@@ -23,19 +23,27 @@ const App = () => {
           setCurrentUser({ key: snapShot.key, ...snapShot.val() });
         });
         // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
-      } else setCurrentUser(userAuth);
-      console.log("DisplayName + Key", currentUser);
+      }
+      if (setCurrentUser(userAuth)) {
+        console.log("userAuth + key", userAuth.uid);
+        //below line fixed my issue of getting an error if
+        //i was trying to acces the app and i was not log out
+      } else if (!userAuth && typeof window !== "undefined") {
+        return null;
+      }
+      console.log("userAuth + key", userAuth.uid);
       // console.log("currentUser + key", currentUser.key);
       console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      const id = userAuth.uid;
-      <Modal id={id} />;
+      // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      // const id = userAuth.uid;
+      // setId(id);
     });
     return unsubscribe;
   }, []);
 
   return (
     <div className="container">
+      <Modal id={id} onId={setId} />
       <Router>
         <Nav currentUser={currentUser} />
         <Switch>
