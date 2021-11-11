@@ -1,26 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { FormInput } from "../form-input/form-input";
-import { getFirebase } from "../../firebase/firebase.utils";
+import {
+  createUserProfileDocument,
+  getFirebase,
+} from "../../firebase/firebase.utils";
 import { auth } from "../../firebase/firebase.utils";
 import { createUserWithEmailandPassword } from "../../firebase/firebase.utils";
 
 export const SignUp = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const register = () => {
-    getFirebase()
-      .auth()
-      .createUserWithEmailandPassword(email, password)
-      .catch(function (error) {
-        console.error(error);
-        alert(error.message);
-      });
-  };
-
-  const { email, password } = user;
+  const { email, password, confirmPassword } = user;
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (password !== confirmPassword) {
+      alert("passwords don't match");
+      return;
+    }
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      createUserProfileDocument(user, { email });
+
+      setUser({
+        email: "",
+        password: "",
+        confirmPassword: "",
+      }); //This will clear the form
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
   };
 
   const handleChange = (event) => {
@@ -28,10 +45,14 @@ export const SignUp = () => {
     setUser({ ...user, [name]: value });
   };
 
+  useEffect(() => {
+    setUser(user); //Closes form after user submits data
+  }, [user]);
+
   return (
-    <div className="sign-in">
-      <h2>I already have an account</h2>
-      <span>Sign in with your email and password</span>
+    <div className="sign-up">
+      <h2>I do not have an account </h2>
+      <span>Sign up with email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Email"
@@ -50,19 +71,16 @@ export const SignUp = () => {
           label="Password"
         />
         <FormInput
-          name="confirm_password"
-          type="confirm_password"
-          value={password}
+          name="confirmPassword"
+          type="password"
+          value={confirmPassword}
           handleChange={handleChange}
           required
-          label="Password"
+          label="Confirm Password"
         />
         <div className="buttons">
-          <button onClick={register} className="sign-btn">
-            Sign In
-          </button>
-          <button onClick={signInWithGoogle} className="google-btn">
-            Sign in with Google
+          <button type="submit" className="sign-btn">
+            Register
           </button>
         </div>
       </form>

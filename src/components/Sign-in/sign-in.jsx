@@ -6,20 +6,6 @@ import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 import styles from "./sign-in.styles.scss";
 
-/* import {
-  auth,
-  createUserWithEmailandPassword,
-} from "../../firebase/firebase.utils"; */
-
-/*   createUserWithEmailandPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    }); */
-
 export const SignIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
 
