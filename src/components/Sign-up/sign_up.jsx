@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { FormInput } from "../form-input/form-input";
 import {
@@ -44,10 +44,6 @@ export const SignUp = () => {
     const { value, name } = event.target;
     setUser({ ...user, [name]: value });
   };
-
-  useEffect(() => {
-    setUser(user); //Closes form after user submits data
-  }, [user]);
 
   return (
     <div className="sign-up">

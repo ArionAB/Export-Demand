@@ -21,6 +21,7 @@ const App = () => {
         userRef.on("value", (snapShot) => {
           setCurrentUser({ key: snapShot.key, ...snapShot.val() });
         });
+        // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
       } else setCurrentUser(userAuth);
       console.log("DisplayName + Key", currentUser);
       console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase

@@ -17,6 +17,10 @@ export const SignIn = () => {
         console.error(error);
         alert(error.message);
       });
+    setUser({
+      email: "",
+      password: "",
+    }); //This will clear the form
   };
 
   const { email, password } = user;
@@ -51,10 +55,14 @@ export const SignIn = () => {
           label="Password"
         />
         <div className="buttons">
-          <button onClick={logIn} className="sign-btn">
+          <button type="button" onClick={logIn} className="sign-btn">
             Sign In
           </button>
-          <button onClick={signInWithGoogle} className="google-btn">
+          <button
+            type="button"
+            onClick={signInWithGoogle}
+            className="google-btn"
+          >
             Sign in with Google
           </button>
         </div>
