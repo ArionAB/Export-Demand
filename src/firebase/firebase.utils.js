@@ -40,7 +40,8 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
   const userRef = database.ref().child(`Users/${userAuth.uid}`);
-
+  //This whole function is made to add users into our realtime
+  //database if they do not exist yet
   const snapShot = await userRef.get();
 
   console.log(snapShot); //id of the user that is logged in

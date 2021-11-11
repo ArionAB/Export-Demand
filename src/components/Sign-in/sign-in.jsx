@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FormInput } from "../form-input/form-input";
 import { getFirebase } from "../../firebase/firebase.utils";
+import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 import styles from "./sign-in.styles.scss";
 
@@ -18,8 +19,6 @@ import styles from "./sign-in.styles.scss";
       const errorCode = error.code;
       const errorMessage = error.message;
     }); */
-
-import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 export const SignIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
