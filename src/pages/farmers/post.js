@@ -6,6 +6,7 @@ import { getFirebase } from "../../firebase/firebase.utils";
 import styles from "./modal.styles.scss";
 
 export default function Post({ farm }) {
+  console.log(farm);
   const [show, setShow] = useState(false);
 
   const deletePost = () => {
@@ -39,10 +40,11 @@ export default function Post({ farm }) {
       const obj = {
         ...values,
       };
+      const id = farm.id;
       getFirebase()
         .database()
-        .ref("posts")
-        .child(farm.id)
+        .ref(`Users/` + id)
+
         .update(obj, (err) => {
           if (err) console.log(err);
         });

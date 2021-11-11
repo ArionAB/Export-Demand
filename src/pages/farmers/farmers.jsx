@@ -45,6 +45,7 @@ export const Farmers = () => {
               })
               .map((farm, index) => (
                 <div className="Filtered" key={index}>
+                  <Modal farm={farm} />
                   <Post farm={farm} />
                 </div>
               ))

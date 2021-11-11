@@ -1,11 +1,36 @@
-import React from "react";
+import React, { Children } from "react";
 import { FormInput } from "../form-input/form-input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getFirebase } from "../../firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 import styles from "./modal.styles.scss";
 
 export const Modal = (props) => {
+  const [currentUser, setCurrentUser] = useState();
+  // let unsuscribeFromAuth = null;
+
+  const [id, setId] = useState("");
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.on("value", (snapShot) => {
+          setCurrentUser({ key: snapShot.key, ...snapShot.val() });
+        });
+        // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
+      } else setCurrentUser(userAuth);
+      console.log("DisplayName + Key", currentUser);
+      // console.log("currentUser + key", currentUser.key);
+      console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      const id = userAuth.uid;
+      setId(id);
+      console.log(id);
+    });
+    return unsubscribe;
+  }, []);
+
   const initialFieldValues = {
     title: "",
     image: "",
@@ -32,9 +57,11 @@ export const Modal = (props) => {
     };
     getFirebase()
       .database()
-      .ref("posts")
+      .ref(`Users/` + id)
+
       .push(obj, (err) => {
         if (err) console.log(err);
+        console.log("ID", id);
       });
   };
 
@@ -104,35 +131,3 @@ export const Modal = (props) => {
     </>
   );
 };
-
-// {
-//   /*  const handleSubmit = async (event) => {
-//   event.preventDefault();
-
-//   console.log({ ...state });
-//   const newPost = {
-//     ...state,
-//   };
-//   getFirebase()
-//     .database()
-//     .ref()
-//     .child(`posts/`)
-//     .set(newPost)
-//     .then(() => history.push(`/farmers`));
-// };  */
-// }
-
-// {Object.keys(state).map((id) => (
-
-/*   useEffect(() => {
-    getFirebase()
-      .database()
-      .ref()
-      .child(`posts/`)
-      .on("value", (snapshot) => {
-        if (snapshot.val() != null)
-          setState({
-            ...snapshot.val(),
-          });
-      });
-  }, []); */

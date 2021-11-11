@@ -7,6 +7,7 @@ import { SignInSignUp } from "./pages/sign_in_up/sign_in_up";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { noMatch } from "./components/noMatch/noMatch";
 import { PostContextProvider } from "./Context/postContext";
+import { Modal } from "./components/Modal/modal";
 
 import "./App.scss";
 
@@ -24,7 +25,11 @@ const App = () => {
         // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
       } else setCurrentUser(userAuth);
       console.log("DisplayName + Key", currentUser);
+      // console.log("currentUser + key", currentUser.key);
       console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      const id = userAuth.uid;
+      <Modal id={id} />;
     });
     return unsubscribe;
   }, []);
