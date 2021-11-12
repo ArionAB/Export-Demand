@@ -6,9 +6,14 @@ import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 import styles from "./modal.styles.scss";
 
-export const Modal = (props) => {
+export const Modal = (props, { farm, id }) => {
   const [currentUser, setCurrentUser] = useState();
-  const [id, setId] = useState("");
+
+  console.log("NewId", props.id);
+  console.log("farm-MODAL", props.farm);
+  // const [id, setId] = useState("");
+
+  // console.log(id);
   // let unsuscribeFromAuth = null;
   /*   console.log(id);
   console.log(onId); */
@@ -33,7 +38,7 @@ export const Modal = (props) => {
     return unsubscribe;
   }, []); */
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -57,7 +62,7 @@ export const Modal = (props) => {
       setId(id);
     });
     return unsubscribe;
-  }, []);
+  }, []); */
 
   const initialFieldValues = {
     title: "",
@@ -85,11 +90,11 @@ export const Modal = (props) => {
     };
     getFirebase()
       .database()
-      .ref(`Users/` + id)
-
+      .ref(`Users/`)
+      // .ref(`Users/` + id)
       .push(obj, (err) => {
         if (err) console.log(err);
-        console.log("ID", id);
+        // console.log("ID", id);
       });
   };
 

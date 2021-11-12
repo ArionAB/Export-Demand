@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Nav } from "./components/nav/nav";
 import { HomePage } from "./pages/homepage/homepage";
 import { Farmers } from "./pages/farmers/farmers";
@@ -11,9 +11,10 @@ import { Modal } from "./components/Modal/modal";
 
 import "./App.scss";
 
-const App = () => {
+const App = (props) => {
   const [currentUser, setCurrentUser] = useState();
-  const [id, setId] = useState("");
+
+  const id = useRef("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
@@ -35,15 +36,17 @@ const App = () => {
       // console.log("currentUser + key", currentUser.key);
       console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
       // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      // const id = userAuth.uid;
+      id.current = userAuth.uid;
       // setId(id);
+      console.log(id.current);
     });
     return unsubscribe;
   }, []);
 
   return (
     <div className="container">
-      <Modal id={id} onId={setId} />
+      <Modal id={id} />
+
       <Router>
         <Nav currentUser={currentUser} />
         <Switch>
