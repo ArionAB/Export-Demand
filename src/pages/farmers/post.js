@@ -6,7 +6,8 @@ import { getFirebase } from "../../firebase/firebase.utils";
 import styles from "./modal.styles.scss";
 
 export default function Post({ farm }) {
-  console.log(farm);
+  // console.log(farm);
+  // console.log(farm.id);
   const [show, setShow] = useState(false);
 
   const deletePost = () => {
@@ -118,7 +119,6 @@ export default function Post({ farm }) {
     );
   };
 
-  console.log("FARM-ID", farm.id);
   return (
     <div id={farm.id}>
       <h2>{farm.title}</h2>

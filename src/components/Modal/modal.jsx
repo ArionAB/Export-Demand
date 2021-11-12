@@ -10,59 +10,6 @@ export const Modal = (props, { farm, id }) => {
   const [currentUser, setCurrentUser] = useState();
 
   console.log("NewId", props.id);
-  console.log("farm-MODAL", props.farm);
-  // const [id, setId] = useState("");
-
-  // console.log(id);
-  // let unsuscribeFromAuth = null;
-  /*   console.log(id);
-  console.log(onId); */
-  // const [id, setId] = useState("");
-  /*   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.on("value", (snapShot) => {
-          setCurrentUser({ key: snapShot.key, ...snapShot.val() });
-        });
-        // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
-      } else setCurrentUser(userAuth);
-
-      // console.log("currentUser + key", currentUser.key);
-      console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      // const id = userAuth.uid;
-      // setId(id);
-      // console.log(id);
-    });
-    return unsubscribe;
-  }, []); */
-
-  /*   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.on("value", (snapShot) => {
-          setCurrentUser({ key: snapShot.key, ...snapShot.val() });
-        });
-        // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
-      }
-      if (setCurrentUser(userAuth)) {
-        console.log("userAuth + key", userAuth.uid);
-        //below line fixed my issue of getting an error if
-        //i was trying to acces the app and i was not log out
-      } else if (!userAuth && typeof window !== "undefined") {
-        return null;
-      }
-      console.log("userAuth + key", userAuth.uid);
-      // console.log("currentUser + key", currentUser.key);
-      console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      const id = userAuth.uid;
-      setId(id);
-    });
-    return unsubscribe;
-  }, []); */
 
   const initialFieldValues = {
     title: "",
@@ -84,17 +31,19 @@ export const Modal = (props, { farm, id }) => {
   }
 
   const handleFormSubmit = (e) => {
+    console.log("submit ID", props.id);
     e.preventDefault();
     const obj = {
       ...values,
     };
     getFirebase()
       .database()
-      .ref(`Users/`)
-      // .ref(`Users/` + id)
+      .ref(`Users/${props.id}`)
+      // .ref(`Users/${newId}`)
+
       .push(obj, (err) => {
         if (err) console.log(err);
-        // console.log("ID", id);
+        console.log("ID", props.id);
       });
   };
 

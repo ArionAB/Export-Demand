@@ -5,12 +5,12 @@ import { auth, createUserProfileDocument } from "../firebase/firebase.utils";
 
 export const PostContext = createContext();
 
-export const PostContextProvider = (props) => {
+export const PostContextProvider = (props, { id }) => {
   const [farmPosts, setFarmPosts] = useState();
   const [currentUser, setCurrentUser] = useState();
-  const [id, setId] = useState("");
-
-  useEffect(() => {
+  // const [id, setId] = useState("");
+  console.log("POSTCONTEXT ID", props.id);
+  /* useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -30,11 +30,11 @@ export const PostContextProvider = (props) => {
       // console.log("currentUser + key", currentUser.key);
       console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
       // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      const id = userAuth.uid;
+       id = userAuth.uid;
       setId(id);
     });
     return unsubscribe;
-  }, []);
+  }, []); */
 
   useEffect(() => {
     getFirebase()

@@ -6,15 +6,15 @@ import { Farmers } from "./pages/farmers/farmers";
 import { SignInSignUp } from "./pages/sign_in_up/sign_in_up";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { noMatch } from "./components/noMatch/noMatch";
-import { PostContextProvider } from "./Context/postContext";
+import { PostContext, PostContextProvider } from "./Context/postContext";
 import { Modal } from "./components/Modal/modal";
 
 import "./App.scss";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState();
-
-  const id = useRef("");
+  const [id, setId] = useState("");
+  // const id = useRef("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
@@ -33,20 +33,25 @@ const App = (props) => {
         return null;
       }
       console.log("userAuth + key", userAuth.uid);
-      // console.log("currentUser + key", currentUser.key);
-      console.log("userAuth", userAuth); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      // console.log("userAuth + key", userAuth.uid); //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      id.current = userAuth.uid;
-      // setId(id);
-      console.log(id.current);
+
+      //User autehntication session persistence: if user refreshes page he is still logged in to firebase
+      const id = userAuth.uid;
+
+      // setId(id); id = userAuth.uid;
+      setId(id);
     });
+    <>
+      <Modal id={id} />
+      <PostContext id={id} />;
+    </>;
     return unsubscribe;
   }, []);
+  /*  if (auth().currentUser !== null)
+    console.log("user id: " + auth().currentUser.uid); */
 
   return (
     <div className="container">
       <Modal id={id} />
-
       <Router>
         <Nav currentUser={currentUser} />
         <Switch>
