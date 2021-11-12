@@ -42,7 +42,6 @@ const App = (props) => {
     });
     <>
       <Modal id={id} />
-      <PostContext id={id} />;
     </>;
     return unsubscribe;
   }, []);

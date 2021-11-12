@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "../../components/Modal/modal";
 import Post from "./post";
 import { useContext } from "react";
-import { PostContext } from "../../Context/postContext";
+import { PostContext, PostContextProvider } from "../../Context/postContext";
 
 import styles from "./farmers.styles.scss";
 
@@ -46,6 +46,7 @@ export const Farmers = () => {
               .map((farm, index) => (
                 <div className="Filtered" key={index}>
                   <Modal farm={farm} />
+                  <PostContextProvider farm={farm} />
                   <Post farm={farm} />
                 </div>
               ))

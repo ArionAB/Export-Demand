@@ -6,10 +6,30 @@ import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 import styles from "./modal.styles.scss";
 
-export const Modal = (props, { farm, id }) => {
+export const Modal = (props, { farm }) => {
   const [currentUser, setCurrentUser] = useState();
+  const [id, setId] = useState("");
+  // console.log("NewId", props.id);
 
-  console.log("NewId", props.id);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.on("value", (snapShot) => {
+          setCurrentUser({ key: snapShot.key, ...snapShot.val() });
+        });
+        // }
+      }
+      if (setCurrentUser(userAuth)) {
+      } else if (!userAuth && typeof window !== "undefined") {
+        return null;
+      }
+      const id = userAuth.uid;
+      setId(id);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const initialFieldValues = {
     title: "",
@@ -38,12 +58,13 @@ export const Modal = (props, { farm, id }) => {
     };
     getFirebase()
       .database()
-      .ref(`Users/${props.id}`)
+      // .ref("posts/")
+      .ref(`Users/UserPost/${id}`)
       // .ref(`Users/${newId}`)
 
       .push(obj, (err) => {
         if (err) console.log(err);
-        console.log("ID", props.id);
+        console.log("ID", id);
       });
   };
 
