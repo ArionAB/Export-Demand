@@ -33,15 +33,16 @@ export const PostContextProvider = (props, { farm }) => {
   useEffect(() => {
     getFirebase()
       .database()
-      .ref(`Users/UserPost/`)
+      .ref(`Users/Posts/${id}`)
       // .ref(`Users/UserPost/`)
-      .on("value", (snapshot) => {
+      .on("child_added", (snapshot, prevChildKey) => {
         const posts = snapshot.val();
         const farmPosts = [];
         for (let id in posts) {
           farmPosts.push({ id, ...posts[id] });
         }
         if (snapshot.val() != null) setFarmPosts(farmPosts);
+        console.log("Previous Post ID: " + prevChildKey);
         console.log("POST LIST", farmPosts);
         console.log("snap", snapshot.val());
       });

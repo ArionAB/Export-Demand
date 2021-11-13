@@ -59,7 +59,7 @@ export const Modal = (props, { farm }) => {
     getFirebase()
       .database()
       // .ref("posts/")
-      .ref(`Users/UserPost/${id}`)
+      .ref(`Users/Posts/${id}`)
       // .ref(`Users/${newId}`)
 
       .push(obj, (err) => {
