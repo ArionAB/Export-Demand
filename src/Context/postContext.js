@@ -7,14 +7,16 @@ import {
   FirebaseAuth,
 } from "../firebase/firebase.utils";
 import Post from "../pages/farmers/post";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 export const PostContext = createContext();
 
 export const PostContextProvider = (props, { farm }) => {
-  const [farmPosts, setFarmPosts] = useState();
+  const [farmPosts, setFarmPosts] = useState([]);
   const [currentUser, setCurrentUser] = useState();
   const [id, setId] = useState("");
-  console.log("PostContextProvider", props.farm);
+  let posts = [];
+  // console.log("PostContextProvider", props.farm);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -50,10 +52,10 @@ export const PostContextProvider = (props, { farm }) => {
       .ref(`Users/Posts/`)
       .on("value", (snapshot) => {
         snapshot.forEach((userData) => {
-          console.log("Userdata", userData);
           const userId = userData.key;
-          console.log("userId", userId);
+
           userData.forEach((postData) => {
+            // console.log("POST-DATA", postData.val());
             const postKey = postData.key;
             const content = postData.child("content").val();
             const email = postData.child("email").val();
@@ -61,8 +63,8 @@ export const PostContextProvider = (props, { farm }) => {
             const phone = postData.child("phone").val();
             const product = postData.child("product").val();
             const title = postData.child("title").val();
-            console.log(title);
-            const DataPost = {
+
+            const post = {
               postKey,
               content,
               email,
@@ -71,23 +73,43 @@ export const PostContextProvider = (props, { farm }) => {
               product,
               title,
             };
-            console.log("DataPost", DataPost);
-            const posts = snapshot.val(); //snapshot.val()
-            const farmPosts = [];
+            posts.push(post);
 
-            farmPosts.push({ ...DataPost });
+            console.log("DATAPOST", postData);
 
-            if (snapshot.val() != null) setFarmPosts(farmPosts);
-            <>
-              <Post posts={posts} />
-            </>;
+            // farmPosts.push({ item });
+
+            // console.log("stars", item, "stars");
+
+            // console.log("farmPosts", farmPosts);
+            // console.log("DataPost", DataPost);
+            // // console.log("property");
+            // console.log("farmPosts", farmPosts);
+            // console.log(DataPost);
+
+            setFarmPosts(posts);
+            console.log(posts);
+            console.log(farmPosts);
           });
         });
       });
   }, []);
+
+  // const posts = snapshot.val(); //snapshot.val()
+
+  // farmPosts.push({ property, ...DataPost[property] });
+  /*    for (let property in DataPost) {
+              console.log(`DataPost.${property} = ${DataPost[property]}`);
+              farmPosts.push(DataPost);
+            } */
+  /*  for (let prop of DataPost) {
+            } */
+
+  // if (snapshot.val() != null) setFarmPosts(farmPosts);
+  console.log(posts);
   return (
     <>
-      <PostContext.Provider value={{ farmPosts }}>
+      <PostContext.Provider value={{ posts }}>
         {props.children}
       </PostContext.Provider>
     </>
@@ -124,3 +146,42 @@ console.log("POST LIST", farmPosts);
 console.log("snap", snapshot.val());
 });
 }, []); */
+
+/* .ref(`Users/Posts/`)
+.on("value", (snapshot) => {
+  console.log("Snapshot", snapshot.val());
+  snapshot.forEach((userData) => {
+    console.log("Userdata", userData);
+    const userId = userData.key;
+    console.log("userId", userId);
+    userData.forEach((postData) => {
+      console.log("POST-DATA", postData);
+      const postKey = postData.key;
+      const content = postData.child("content").val();
+      const email = postData.child("email").val();
+      const image = postData.child("image").val();
+      const phone = postData.child("phone").val();
+      const product = postData.child("product").val();
+      const title = postData.child("title").val();
+      console.log(title);
+      const DataPost = {
+        postKey,
+        content,
+        email,
+        image,
+        phone,
+        product,
+        title,
+      }; */
+
+// console.log(title);
+// console.log(email);
+
+// const DataPost = {
+//   content,
+//   email,
+//   image,
+//   phone,
+//   product,
+//   title,
+// };
