@@ -58,10 +58,9 @@ export const Modal = (props, { farm }) => {
     };
     getFirebase()
       .database()
-      // .ref("posts/")
-      .ref(`Users/Posts/${id}`)
-      // .ref(`Users/${newId}`)
 
+      .ref(`Users/Posts/`)
+      .child(`${id}`)
       .push(obj, (err) => {
         if (err) console.log(err);
         console.log("ID", id);

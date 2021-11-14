@@ -5,9 +5,13 @@ import { getFirebase } from "../../firebase/firebase.utils";
 
 import styles from "./modal.styles.scss";
 
-export default function Post({ farm }) {
+export default function Post({ farm, posts }) {
   // console.log(farm);
-  // console.log(farm.id);
+  /*  console.log("DATAPOST POST", posts); */
+  /* console.log("farm.id", farm.id);
+  console.log("farm.id.postKey", farm.id); */
+  console.log("farm.title", farm.title);
+  console.log("farm", farm);
   const [show, setShow] = useState(false);
 
   const deletePost = () => {
@@ -44,7 +48,7 @@ export default function Post({ farm }) {
       const id = farm.id;
       getFirebase()
         .database()
-        .ref(`Users/` + id)
+        .ref(`Users/Posts/` + id)
 
         .update(obj, (err) => {
           if (err) console.log(err);
