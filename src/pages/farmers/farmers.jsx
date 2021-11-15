@@ -7,15 +7,15 @@ import { PostContext, PostContextProvider } from "../../Context/postContext";
 import styles from "./farmers.styles.scss";
 
 export const Farmers = () => {
-  const { posts } = useContext(PostContext);
+  const { farmPosts } = useContext(PostContext);
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  console.log("stars", posts, "stars");
+  console.log("stars", farmPosts, "stars");
 
   /*   useEffect(() => {
     setShow(false); //Closes form after user submits data
-  }, [posts]); */
+  }, [farmPosts]); */
 
   const searchField = (e) => {
     setSearch(e.target.value);
@@ -32,8 +32,8 @@ export const Farmers = () => {
       <button onClick={() => setShow(true)}>Add your farm</button>
       <Modal onClose={() => setShow(false)} show={show} />
       <div className="reverse">
-        {posts
-          ? posts.map((farm, index) => (
+        {farmPosts
+          ? farmPosts.map((farm, index) => (
               <div className="Filtered" key={index}>
                 <Post farm={farm} />
               </div>
