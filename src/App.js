@@ -26,13 +26,13 @@ const App = (props) => {
         // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
       }
       if (setCurrentUser(userAuth)) {
-        console.log("userAuth + key", userAuth.uid);
+        // console.log("userAuth + key", userAuth.uid);
         //below line fixed my issue of getting an error if
         //i was trying to acces the app and i was not log out
       } else if (!userAuth && typeof window !== "undefined") {
         return null;
       }
-      console.log("userAuth + key", userAuth.uid);
+      // console.log("userAuth + key", userAuth.uid);
 
       //User autehntication session persistence: if user refreshes page he is still logged in to firebase
       const id = userAuth.uid;

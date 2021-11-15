@@ -22,22 +22,28 @@ export default function Post({ farm }) {
         });
       }
       if (setCurrentUser(userAuth)) {
-        console.log("userAuth + key", userAuth.uid);
       } else if (!userAuth && typeof window !== "undefined") {
         return null;
       }
-      console.log("userAuth + key", userAuth.uid);
 
-      const id = userAuth.uid;
+      const uid = userAuth.uid;
 
-      setId(id);
+      setId(uid);
     });
 
     return unsubscribe;
   }, []);
+
+  const postKey = farm.postKey;
   console.log(id);
+
   const deletePost = () => {
-    getFirebase().database().ref("posts").child(farm.id).remove();
+    getFirebase()
+      .database()
+      .ref(`Users/Posts/`)
+      .child(`${id}`)
+      .child(`${postKey}`)
+      .remove();
   };
 
   const EditModal = (props) => {
