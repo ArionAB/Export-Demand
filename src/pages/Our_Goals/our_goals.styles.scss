@@ -1,3 +1,21 @@
+.container {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.image {
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://cdnimg.webstaurantstore.com/images/blogs/1532/farmtotable-blog-header.jpg");
+  height: 60vh;
+}
+
+#goals {
+  width: 35vw;
+  height: auto;
+}
+
 .goals {
   display: flex;
   flex-direction: column;
@@ -5,12 +23,11 @@
 
 .plusAndTitle {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  background-color: rgb(214, 210, 210);
+  flex-direction: column;
+
+  background-color: rgb(233, 246, 251);
   border: 5px solid white;
-  border-radius: 5%;
+
   div {
     border: 1px solid grey;
     padding: 15px;
@@ -24,6 +41,13 @@
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
+.expanded {
+  border-top: 10px solid white !important;
+
+  background-color: white;
+}
+
+.add {
+  display: flex;
+  justify-content: start;
 }

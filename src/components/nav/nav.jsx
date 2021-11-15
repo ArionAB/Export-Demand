@@ -8,7 +8,10 @@ export const Nav = ({ currentUser }) => {
   return (
     <div className="nav">
       <Link className="logo-container" to="/">
-        <img src={require("../../images/logo.jpg").default} alt="Logo"></img>
+        <img
+          src={require("../../images/OV-Logo-port-slider.jpg").default}
+          alt="Logo"
+        ></img>
       </Link>
       <div className="options">
         <Link className="option" to="/">
