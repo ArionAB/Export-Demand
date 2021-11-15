@@ -13,9 +13,9 @@ export const Farmers = () => {
   const [showAlert, setShowAlert] = useState(false);
   console.log("stars", farmPosts, "stars");
 
-  /*   useEffect(() => {
+  useEffect(() => {
     setShow(false); //Closes form after user submits data
-  }, [farmPosts]); */
+  }, [farmPosts]);
 
   const searchField = (e) => {
     setSearch(e.target.value);
@@ -33,11 +33,22 @@ export const Farmers = () => {
       <Modal onClose={() => setShow(false)} show={show} />
       <div className="reverse">
         {farmPosts
-          ? farmPosts.map((farm, index) => (
-              <div className="Filtered" key={index}>
-                <Post farm={farm} />
-              </div>
-            ))
+          ? farmPosts
+              .filter((farm) => {
+                if (search === "") {
+                  return farm;
+                } else if (
+                  farm.title.toLowerCase().includes(search.toLowerCase()) ||
+                  farm.product.toLowerCase().includes(search.toLowerCase())
+                ) {
+                  return farm;
+                }
+              })
+              .map((farm, index) => (
+                <div className="Filtered" key={index}>
+                  <Post farm={farm} />
+                </div>
+              ))
           : ""}{" "}
       </div>
     </>

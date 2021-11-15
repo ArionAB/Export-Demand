@@ -50,7 +50,6 @@ const App = (props) => {
 
   return (
     <div className="container">
-      <Modal id={id} />
       <Router>
         <Nav currentUser={currentUser} />
         <Switch>

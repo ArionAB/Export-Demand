@@ -2,21 +2,40 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { FormInput } from "../../components/form-input/form-input";
 import { getFirebase } from "../../firebase/firebase.utils";
+import { createUserProfileDocument, auth } from "../../firebase/firebase.utils";
 
 import styles from "./modal.styles.scss";
 
-export default function Post({ farm, posts }) {
-  console.log("farm", farm);
-
-  // console.log(farm);
-  /*  console.log("DATAPOST POST", posts); */
-  /* console.log("farm.id", farm.id);
-  console.log("farm.id.postKey", farm.id); */
-
-  // console.log("farm.title", farm.title);
-  // console.log("farm", farm);
+export default function Post({ farm }) {
+  /*   console.log("farmid", farm.postKey);
+  console.log("farm", farm); */
+  const [currentUser, setCurrentUser] = useState();
+  const [id, setId] = useState("");
   const [show, setShow] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.on("value", (snapShot) => {
+          setCurrentUser({ key: snapShot.key, ...snapShot.val() });
+        });
+      }
+      if (setCurrentUser(userAuth)) {
+        console.log("userAuth + key", userAuth.uid);
+      } else if (!userAuth && typeof window !== "undefined") {
+        return null;
+      }
+      console.log("userAuth + key", userAuth.uid);
+
+      const id = userAuth.uid;
+
+      setId(id);
+    });
+
+    return unsubscribe;
+  }, []);
+  console.log(id);
   const deletePost = () => {
     getFirebase().database().ref("posts").child(farm.id).remove();
   };
@@ -39,19 +58,19 @@ export default function Post({ farm, posts }) {
         [name]: value,
       });
     }
-    /*    useEffect(() => {
-      setShow(false); //Closes form after user submits data
-    }, []); */
 
     const updatePost = (e) => {
       e.preventDefault();
       const obj = {
         ...values,
       };
-      const id = farm.id;
+      const postKey = farm.postKey;
       getFirebase()
         .database()
-        .ref(`Users/Posts/` + id)
+        // .ref(`Users/Posts/${id}/${postKey}/`)
+        .ref(`Users/Posts/`)
+        .child(`${id}`)
+        .child(`${postKey}`)
 
         .update(obj, (err) => {
           if (err) console.log(err);
