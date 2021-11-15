@@ -21,8 +21,8 @@ export const Nav = ({ currentUser }) => {
         <Link className="option" to="/farmers">
           Farmers
         </Link>
-        <Link className="option" to="/project">
-          Our Goal
+        <Link className="option" to="/goals">
+          Our Goals
         </Link>
         <Link className="option" to="/commerce">
           Organic

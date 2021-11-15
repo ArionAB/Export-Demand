@@ -7,9 +7,10 @@ import { createUserProfileDocument, auth } from "../../firebase/firebase.utils";
 
 import styles from "./modal.styles.scss";
 
-export default function Post(props, { farm }) {
+export default function Post(props, { farm, userId }) {
   /*   console.log("farmid", farm.postKey);
   console.log("farm", farm); */
+  console.log(props.userId);
   const [currentUser, setCurrentUser] = useState();
   const [id, setId] = useState("");
   const [show, setShow] = useState(false);

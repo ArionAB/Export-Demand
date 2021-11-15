@@ -7,7 +7,7 @@ import { SignInSignUp } from "./pages/sign_in_up/sign_in_up";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { noMatch } from "./components/noMatch/noMatch";
 import { PostContext, PostContextProvider } from "./Context/postContext";
-import { Modal } from "./components/Modal/modal";
+import { Goals } from "./pages/Our_Goals/our_goals";
 
 import "./App.scss";
 
@@ -40,13 +40,9 @@ const App = (props) => {
       // setId(id); id = userAuth.uid;
       setId(id);
     });
-    <>
-      <Modal id={id} />
-    </>;
+
     return unsubscribe;
   }, []);
-  /*  if (auth().currentUser !== null)
-    console.log("user id: " + auth().currentUser.uid); */
 
   return (
     <div className="container">
@@ -55,6 +51,7 @@ const App = (props) => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <PostContextProvider>
+            <Route exact path="/goals" component={Goals} />
             <Route exact path="/farmers/" component={Farmers} />
             <Route exact path="/signin" component={SignInSignUp} />
           </PostContextProvider>
