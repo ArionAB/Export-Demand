@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { FormInput } from "../../components/form-input/form-input";
+import { SignInSignUp } from "../sign_in_up/sign_in_up";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { createUserProfileDocument, auth } from "../../firebase/firebase.utils";
 
 import styles from "./modal.styles.scss";
 
-export default function Post({ farm }) {
+export default function Post(props, { farm }) {
   /*   console.log("farmid", farm.postKey);
   console.log("farm", farm); */
   const [currentUser, setCurrentUser] = useState();
@@ -34,7 +35,7 @@ export default function Post({ farm }) {
     return unsubscribe;
   }, []);
 
-  const postKey = farm.postKey;
+  const postKey = props.farm.postKey;
   console.log(id);
 
   const deletePost = () => {
@@ -48,12 +49,12 @@ export default function Post({ farm }) {
 
   const EditModal = (props) => {
     const initialFieldValues = {
-      title: farm.title,
-      image: farm.image,
-      product: farm.product,
-      content: farm.content,
-      phone: farm.phone,
-      email: farm.email,
+      title: props.farm.title,
+      image: props.farm.image,
+      product: props.farm.product,
+      content: props.farm.content,
+      phone: props.farm.phone,
+      email: props.farm.email,
     };
     const [values, setValues] = useState(initialFieldValues);
 
@@ -70,7 +71,7 @@ export default function Post({ farm }) {
       const obj = {
         ...values,
       };
-      const postKey = farm.postKey;
+      const postKey = props.farm.postKey;
       getFirebase()
         .database()
         // .ref(`Users/Posts/${id}/${postKey}/`)
@@ -141,7 +142,7 @@ export default function Post({ farm }) {
               onChange={handleChange}
               required
             />
-            <button type="submit" value="Save">
+            <button type="submit" value="Save" onClick={props.onClose}>
               Update
             </button>
             <button onClick={props.onClose}>Close</button>
@@ -152,16 +153,16 @@ export default function Post({ farm }) {
   };
 
   return (
-    <div id={farm.id}>
-      <h2>{farm.title}</h2>
+    <div id={props.farm.id}>
+      <h2>{props.farm.title}</h2>
       <button onClick={() => setShow(true)}>Update your information</button>
-      <EditModal farm={farm} onClose={() => setShow(false)} show={show} />
-      <img src={farm.image}></img>
-      <h3>Products: {farm.product}</h3>
-      <p>{farm.content}</p>
-      <p>{farm.phone}</p>
-      <p>{farm.email}</p>
-      <button id={farm.id} key={farm.id} onClick={deletePost}>
+      <EditModal farm={props.farm} onClose={() => setShow(false)} show={show} />
+      <img src={props.farm.image}></img>
+      <h3>Products: {props.farm.product}</h3>
+      <p>{props.farm.content}</p>
+      <p>{props.farm.phone}</p>
+      <p>{props.farm.email}</p>
+      <button id={props.farm.id} key={props.farm.id} onClick={deletePost}>
         Delete Post
       </button>
     </div>
