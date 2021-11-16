@@ -30,4 +30,7 @@
   .option:nth-child(1) {
     color: #6791d6;
   }
+  .option:hover {
+    border: 3px solid darkgreen;
+  }
 }

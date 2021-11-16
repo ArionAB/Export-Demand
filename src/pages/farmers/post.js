@@ -156,16 +156,27 @@ export default function Post(props, { farm, userId }) {
   return (
     <div id={props.farm.id}>
       <h2>{props.farm.title}</h2>
-      <button onClick={() => setShow(true)}>Update your information</button>
-      <EditModal farm={props.farm} onClose={() => setShow(false)} show={show} />
-      <img src={props.farm.image}></img>
+      <img className="img" src={props.farm.image}></img>
       <h3>Products: {props.farm.product}</h3>
       <p>{props.farm.content}</p>
-      <p>{props.farm.phone}</p>
+      <p>Phone: {props.farm.phone}</p>
       <p>{props.farm.email}</p>
-      <button id={props.farm.id} key={props.farm.id} onClick={deletePost}>
-        Delete Post
-      </button>
+      <div className="delete-up">
+        <button onClick={() => setShow(true)}>Update your information</button>
+        <EditModal
+          farm={props.farm}
+          onClose={() => setShow(false)}
+          show={show}
+        />
+        <button
+          className="delete"
+          id={props.farm.id}
+          key={props.farm.id}
+          onClick={deletePost}
+        >
+          Delete Post
+        </button>
+      </div>
     </div>
   );
 }

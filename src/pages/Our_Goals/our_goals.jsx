@@ -13,79 +13,84 @@ export const Goals = () => {
   const [showfour, setShowfour] = useState(false);
 
   return (
-    <div className="container">
-      <div className="image"></div>
-      <div className="goals">
-        <div className="plusAndTitle" onClick={() => setShow(!show)}>
-          <div className="add">
-            <div>{plus} </div>
-            <h3>Some title</h3>
-          </div>
-          {show ? (
-            <div className="expanded">
-              <h1>How does the project work?</h1>
-              <ul>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-              </ul>
+    <>
+      <div className="container">
+        <div className="image"></div>
+        <div className="goals">
+          <div className="plusAndTitle" onClick={() => setShow(!show)}>
+            <div className="add">
+              <div>{plus} </div>
+              <h3>Some title</h3>
             </div>
-          ) : null}
-        </div>
-        <div className="plusAndTitle" onClick={() => setShowtwo(!showtwo)}>
-          <div className="add">
-            <div>{plus} </div>
-            <h3>Some title</h3>
+            {show ? (
+              <div className="expanded">
+                <h1>How does the project work?</h1>
+                <ul>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                </ul>
+              </div>
+            ) : null}
           </div>
-          {showtwo ? (
-            <div className="expanded">
-              <h1>How does the project work?</h1>
-              <ul>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-              </ul>
+          <div className="plusAndTitle" onClick={() => setShowtwo(!showtwo)}>
+            <div className="add">
+              <div>{plus} </div>
+              <h3>Some title</h3>
             </div>
-          ) : null}
-        </div>
-        <div className="plusAndTitle" onClick={() => setShowthree(!showthree)}>
-          <div className="add">
-            <div>{plus} </div>
-            <h3>Some title</h3>
+            {showtwo ? (
+              <div className="expanded">
+                <h1>How does the project work?</h1>
+                <ul>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                </ul>
+              </div>
+            ) : null}
           </div>
-          {showthree ? (
-            <div className="expanded">
-              <h1>How does the project work?</h1>
-              <ul>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-              </ul>
+          <div
+            className="plusAndTitle"
+            onClick={() => setShowthree(!showthree)}
+          >
+            <div className="add">
+              <div>{plus} </div>
+              <h3>Some title</h3>
             </div>
-          ) : null}
-        </div>
-        <div className="plusAndTitle" onClick={() => setShowfour(!showfour)}>
-          <div className="add">
-            <div>{plus} </div>
-            <h3>Some title</h3>
+            {showthree ? (
+              <div className="expanded">
+                <h1>How does the project work?</h1>
+                <ul>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                </ul>
+              </div>
+            ) : null}
           </div>
-          {showfour ? (
-            <div className="expanded">
-              <h1>How does the project work?</h1>
-              <ul>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-                <li>Some item in the list</li>
-              </ul>
+          <div className="plusAndTitle" onClick={() => setShowfour(!showfour)}>
+            <div className="add">
+              <div>{plus} </div>
+              <h3>Some title</h3>
             </div>
-          ) : null}
+            {showfour ? (
+              <div className="expanded">
+                <h1>How does the project work?</h1>
+                <ul>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                  <li>Some item in the list</li>
+                </ul>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

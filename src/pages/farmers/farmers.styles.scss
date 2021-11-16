@@ -1,23 +1,112 @@
-.edit_link {
-  box-shadow: 0px 0px 0px 2px #9fb4f2;
-  background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-  background-color: #7892c2;
-  border-radius: 10px;
-  border: 1px solid #4e6096;
-  display: inline-block;
+.title-search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  height: 2.5em;
+  width: 20em;
+  padding: 5px;
+  font-size: 16px;
+  border-width: 1px;
+  border-color: #cccccc;
+  background-color: #ffffff;
+  margin-bottom: 75px;
+
+  border-style: solid;
+  border-radius: 17px;
+  box-shadow: 1px 0px 6px rgba(66, 66, 66, 0.75);
+  text-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
+  input:focus {
+    outline: none;
+  }
+}
+
+.market-title {
+  font-family: "Roboto";
+  letter-spacing: 0.5em;
+  margin-bottom: 50px;
+}
+
+.add-farm {
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed";
+  font-weight: bolder;
+  border: none;
   cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 19px;
-  padding: 12px 37px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #283966;
+  border-radius: 30px;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
 }
-.edit_link:hover {
-  background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-  background-color: #476e9e;
+
+.reverse {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
 }
-.edit_link:active {
+
+.filtered {
+  display: flex;
+  flex-direction: row;
+  width: 42vw;
   position: relative;
-  top: 1px;
+
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .img {
+    height: 50%;
+    width: 100%;
+  }
+
+  .delete-up {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      min-width: 165px;
+      width: auto;
+      height: 50px;
+      letter-spacing: 0.5px;
+      line-height: 50px;
+      padding: 0 35px 0 35px;
+      font-size: 15px;
+      background-color: black;
+      color: white;
+      text-transform: uppercase;
+      font-family: "Open Sans Condensed";
+      font-weight: bolder;
+      border: none;
+      cursor: pointer;
+      border-radius: 30px;
+
+      &:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+      }
+    }
+    .delete {
+      margin-left: 10px;
+      background-color: rgb(243, 97, 97);
+    }
+  }
 }

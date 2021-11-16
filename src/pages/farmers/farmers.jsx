@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "../../components/Modal/modal";
 import Post from "./post";
 import { useContext } from "react";
-import { PostContext, PostContextProvider } from "../../Context/postContext";
+import { PostContext } from "../../Context/postContext";
 
 import styles from "./farmers.styles.scss";
 
@@ -23,13 +23,18 @@ export const Farmers = () => {
 
   return (
     <>
-      <h1>Farmer's Market</h1>
-      <input
-        type="search"
-        placeholder="search for a product or farm"
-        onChange={searchField}
-      />
-      <button onClick={() => setShow(true)}>Add your farm</button>
+      <div className="title-search">
+        <h1 className="market-title">FARMER'S MARKET</h1>
+        <input
+          className="search"
+          type="search"
+          placeholder="Search for a product or farm"
+          onChange={searchField}
+        ></input>
+      </div>
+      <button className="add-farm" onClick={() => setShow(true)}>
+        Add your farm
+      </button>
       <Modal onClose={() => setShow(false)} show={show} />
       <div className="reverse">
         {farmPosts
@@ -45,7 +50,7 @@ export const Farmers = () => {
                 }
               })
               .map((farm, index) => (
-                <div className="Filtered" key={index}>
+                <div className="filtered" key={index}>
                   <Post farm={farm} />
                 </div>
               ))
