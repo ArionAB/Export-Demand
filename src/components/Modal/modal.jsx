@@ -3,6 +3,8 @@ import { FormInput } from "../form-input/form-input";
 import { useState, useEffect } from "react";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./modal.styles.scss";
 
@@ -63,8 +65,12 @@ export const Modal = (props, { farm }) => {
       .ref(`Users/Posts/`)
       .child(`${id}`)
       .push(obj, (err) => {
-        if (err) console.log(err);
-        console.log("ID", id);
+        if (err) {
+          console.log(err);
+        } else
+          toast.success("Added Succesfully", {
+            position: "top-center",
+          });
       });
   };
 
@@ -73,6 +79,7 @@ export const Modal = (props, { farm }) => {
   }
   return (
     <>
+      <ToastContainer />
       <div className="modal">
         <h1>Add your farm</h1>
         <form onSubmit={handleFormSubmit}>

@@ -4,6 +4,7 @@ import { FormInput } from "../../components/form-input/form-input";
 import { SignInSignUp } from "../sign_in_up/sign_in_up";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { createUserProfileDocument, auth } from "../../firebase/firebase.utils";
+
 // import { DeleteModal } from "../../components/Modal/deleteModal";
 
 import styles from "./modal.styles.scss";
@@ -27,7 +28,7 @@ export default function Post(props, { farm, userId }) {
       }
 
       const uid = userAuth.uid;
-
+      console.log(uid);
       setId(uid);
     });
 
@@ -73,11 +74,9 @@ export default function Post(props, { farm, userId }) {
       const postKey = props.farm.postKey;
       getFirebase()
         .database()
-
         .ref(`Users/Posts/`)
         .child(`${id}`)
         .child(`${postKey}`)
-
         .update(obj, (err) => {
           if (err) console.log(err);
         });
@@ -142,7 +141,7 @@ export default function Post(props, { farm, userId }) {
               required
             />
             <div className="buttons">
-              <button type="button" onClick={updatePost}>
+              <button type="submit" value="save" onSubmit={props.onClose}>
                 Update
               </button>
               <button onClick={props.onClose}>Close</button>
