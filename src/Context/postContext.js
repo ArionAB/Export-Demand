@@ -11,7 +11,7 @@ import { isCompositeComponent } from "react-dom/test-utils";
 
 export const PostContext = createContext();
 
-export const PostContextProvider = (props, { farm }) => {
+export const PostContextProvider = (props) => {
   const [farmPosts, setFarmPosts] = useState([]);
 
   let posts = [];
@@ -45,7 +45,7 @@ export const PostContextProvider = (props, { farm }) => {
             };
             posts.push(post);
             setFarmPosts(posts);
-            // console.log(farmPosts);
+            console.log(farmPosts);
           });
         });
       });

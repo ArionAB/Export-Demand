@@ -4,7 +4,12 @@ import { farmers } from "../../pages/farmers/farmers";
 import { auth } from "../../firebase/firebase.utils";
 
 import styles from "../nav/nav.styles.scss";
+
 export const Nav = ({ currentUser }) => {
+  /*  if (auth.signOut()) {
+    alert("Sign");
+  } */
+
   return (
     <div className="nav">
       <Link className="logo-container" to="/">
