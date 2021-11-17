@@ -7,6 +7,8 @@ import {
 } from "../../firebase/firebase.utils";
 import { auth } from "../../firebase/firebase.utils";
 import { createUserWithEmailandPassword } from "../../firebase/firebase.utils";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SignUp = () => {
   const [user, setUser] = useState({
@@ -19,7 +21,9 @@ export const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      alert("passwords don't match");
+      toast.error("Passwords don't match", {
+        position: "top-center",
+      });
       return;
     }
     try {
@@ -36,7 +40,9 @@ export const SignUp = () => {
       }); //This will clear the form
     } catch (error) {
       console.error(error);
-      alert(error.message);
+      toast.error(error.message, {
+        position: "top-center",
+      });
     }
   };
 
@@ -47,6 +53,7 @@ export const SignUp = () => {
 
   return (
     <div className="sign-up">
+      <ToastContainer />
       <h2>I do not have an account </h2>
       <span>Sign up with email and password</span>
       <form onSubmit={handleSubmit}>

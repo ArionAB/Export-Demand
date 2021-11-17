@@ -16,14 +16,24 @@ import styles from "./sign-in.styles.scss";
 export const SignIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
 
-  /* auth.onAuthStateChanged(async (userAuth) => {
+  const history = useHistory();
+  auth.onAuthStateChanged(async (userAuth) => {
     if (userAuth) {
-     
-      
-    }
-  }); */
+      history.push("/");
 
-  const logIn = () => {
+      return null;
+    }
+  });
+
+  const { email, password } = user;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters", {
+        position: "top-center",
+      });
+    }
+
     getFirebase()
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -36,44 +46,14 @@ export const SignIn = () => {
             position: "top-center",
           });
         }
-        if (!email.includes("@")) {
-          toast.error("Email badly formatted, must include '@'", {
-            position: "top-center",
-          });
-        }
-        if (!email.includes(".")) {
-          toast.error("Email badly formatted, must include '.'", {
-            position: "top-center",
-          });
-        }
-        if (!password) {
-          toast.error("Password required", {
-            position: "top-center",
-          });
-          if (password.length <= 6) {
-            toast.error("Password must be at least 6 characters", {
-              position: "top-center",
-            });
-          }
-        }
+
         console.error(error);
       });
-    LogSuccesfully();
+
     setUser({
       email: "",
       password: "",
     }); //This will clear the form
-  };
-
-  const LogSuccesfully = () => {
-    toast.success("Sign in succesfully", {
-      position: "top-center",
-    });
-  };
-
-  const { email, password } = user;
-  const handleSubmit = async (event) => {
-    event.preventDefault();
   };
 
   const handleChange = (event) => {
@@ -104,7 +84,7 @@ export const SignIn = () => {
           label="Password"
         />
         <div className="buttons">
-          <button type="button" onClick={logIn} className="sign-btn">
+          <button type="submit" className="sign-btn">
             Sign In
           </button>
           <button
