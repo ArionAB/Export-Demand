@@ -6,6 +6,7 @@ import { auth } from "../../firebase/firebase.utils";
 import styles from "../nav/nav.styles.scss";
 
 export const Nav = ({ currentUser }) => {
+  console.log(currentUser);
   /*  if (auth.signOut()) {
     alert("Sign");
   } */

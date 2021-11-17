@@ -10,6 +10,7 @@ export const Modal = (props, { farm }) => {
   const [currentUser, setCurrentUser] = useState();
   const [id, setId] = useState("");
   // console.log("NewId", props.id);
+  console.log(currentUser);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {

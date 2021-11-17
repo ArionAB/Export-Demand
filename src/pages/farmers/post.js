@@ -4,13 +4,11 @@ import { FormInput } from "../../components/form-input/form-input";
 import { SignInSignUp } from "../sign_in_up/sign_in_up";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { createUserProfileDocument, auth } from "../../firebase/firebase.utils";
+// import { DeleteModal } from "../../components/Modal/deleteModal";
 
 import styles from "./modal.styles.scss";
 
 export default function Post(props, { farm, userId }) {
-  /*   console.log("farmid", farm.postKey);
-  console.log("farm", farm); */
-  console.log(props.userId);
   const [currentUser, setCurrentUser] = useState();
   const [id, setId] = useState("");
   const [show, setShow] = useState(false);
@@ -39,7 +37,7 @@ export default function Post(props, { farm, userId }) {
   const postKey = props.farm.postKey;
   console.log(id);
 
-  const deletePost = () => {
+  const DeletePost = () => {
     getFirebase()
       .database()
       .ref(`Users/Posts/`)
@@ -75,7 +73,7 @@ export default function Post(props, { farm, userId }) {
       const postKey = props.farm.postKey;
       getFirebase()
         .database()
-        // .ref(`Users/Posts/${id}/${postKey}/`)
+
         .ref(`Users/Posts/`)
         .child(`${id}`)
         .child(`${postKey}`)
@@ -143,10 +141,12 @@ export default function Post(props, { farm, userId }) {
               onChange={handleChange}
               required
             />
-            <button type="submit" value="Save" onClick={props.onClose}>
-              Update
-            </button>
-            <button onClick={props.onClose}>Close</button>
+            <div className="buttons">
+              <button type="button" onClick={updatePost}>
+                Update
+              </button>
+              <button onClick={props.onClose}>Close</button>
+            </div>
           </form>
         </div>
       </>
@@ -162,20 +162,30 @@ export default function Post(props, { farm, userId }) {
       <p>Phone: {props.farm.phone}</p>
       <p>{props.farm.email}</p>
       <div className="delete-up">
-        <button onClick={() => setShow(true)}>Update your information</button>
+        {currentUser ? (
+          <button onClick={() => setShow(true)}>Update your information</button>
+        ) : (
+          ""
+        )}
         <EditModal
           farm={props.farm}
           onClose={() => setShow(false)}
           show={show}
         />
-        <button
-          className="delete"
-          id={props.farm.id}
-          key={props.farm.id}
-          onClick={deletePost}
-        >
-          Delete Post
-        </button>
+        {currentUser ? (
+          <div>
+            <button
+              onClick={DeletePost}
+              className="delete"
+              id={props.farm.id}
+              key={props.farm.id}
+            >
+              Delete Post
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

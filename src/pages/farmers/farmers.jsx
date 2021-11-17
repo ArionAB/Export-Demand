@@ -3,14 +3,28 @@ import { Modal } from "../../components/Modal/modal";
 import Post from "./post";
 import { useContext } from "react";
 import { PostContext } from "../../Context/postContext";
+import { auth } from "../../firebase/firebase.utils";
+import { Link } from "react-router-dom";
 
 import styles from "./farmers.styles.scss";
+import { DeleteModal } from "../../components/Modal/deleteModal";
 
 export const Farmers = () => {
   const { farmPosts } = useContext(PostContext);
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        setCurrentUser(userAuth);
+      }
+      return unsubscribe;
+    });
+  }, []);
+
   console.log("stars", farmPosts, "stars");
 
   useEffect(() => {
@@ -32,9 +46,15 @@ export const Farmers = () => {
           onChange={searchField}
         ></input>
       </div>
-      <button className="add-farm" onClick={() => setShow(true)}>
-        Add your farm
-      </button>
+      {currentUser ? (
+        <button className="add-farm" onClick={() => setShow(true)}>
+          Add your farm
+        </button>
+      ) : (
+        <Link className="myButton" to="/signin">
+          Sign in to add a farm
+        </Link>
+      )}
       <Modal onClose={() => setShow(false)} show={show} />
       <div className="reverse">
         {farmPosts
