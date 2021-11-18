@@ -28,11 +28,8 @@ export default function Post(props, { farm, userId }) {
       }
 
       const uid = userAuth.uid;
-      console.log(uid);
       setId(uid);
     });
-
-    return unsubscribe;
   }, []);
 
   const postKey = props.farm.postKey;

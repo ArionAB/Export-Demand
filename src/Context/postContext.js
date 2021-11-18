@@ -13,9 +13,7 @@ export const PostContext = createContext();
 
 export const PostContextProvider = (props) => {
   const [farmPosts, setFarmPosts] = useState([]);
-
   let posts = [];
-
   useEffect(() => {
     getFirebase()
       .database()

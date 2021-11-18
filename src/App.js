@@ -8,8 +8,10 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { noMatch } from "./components/noMatch/noMatch";
 import { PostContext, PostContextProvider } from "./Context/postContext";
 import { Goals } from "./pages/Our_Goals/our_goals";
+import { Modal } from "./components/Modal/modal";
 
 import "./App.scss";
+import { Contact } from "./pages/contact_us/contact_us";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState();
@@ -22,6 +24,8 @@ const App = (props) => {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.on("value", (snapShot) => {
           setCurrentUser({ key: snapShot.key, ...snapShot.val() });
+          const id = userAuth.uid;
+          setId(id);
         });
         // } else setCurrentUser(currentUser); not sure if this one or the one below is correct
       }
@@ -35,21 +39,21 @@ const App = (props) => {
       // console.log("userAuth + key", userAuth.uid);
 
       //User autehntication session persistence: if user refreshes page he is still logged in to firebase
-      const id = userAuth.uid;
 
       // setId(id); id = userAuth.uid;
-      setId(id);
     });
-
-    return unsubscribe;
   }, []);
+  console.log(id);
+  console.log(currentUser);
 
   return (
     <div className="container">
       <Router>
+        <Modal currentUser={currentUser} />
         <Nav currentUser={currentUser} />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/contact" component={Contact} />
           <PostContextProvider>
             <Route exact path="/goals" component={Goals} />
             <Route exact path="/farmers/" component={Farmers} />

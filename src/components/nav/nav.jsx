@@ -15,6 +15,7 @@ export const Nav = ({ currentUser }) => {
     <div className="nav">
       <Link className="logo-container" to="/">
         <img
+          className="logo"
           src={require("../../images/OV-Logo-port-slider.jpg").default}
           alt="Logo"
         ></img>
@@ -23,8 +24,8 @@ export const Nav = ({ currentUser }) => {
         <Link className="option" to="/">
           Home
         </Link>
-        <Link className="option" to="/about">
-          About Us
+        <Link className="option" to="/contact">
+          Contact Us
         </Link>
 
         <Link className="option" to="/farmers">

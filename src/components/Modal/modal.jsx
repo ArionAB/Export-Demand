@@ -8,12 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./modal.styles.scss";
 
-export const Modal = (props, { farm }) => {
+export const Modal = (props) => {
   const [currentUser, setCurrentUser] = useState();
   const [id, setId] = useState("");
   // console.log("NewId", props.id);
-  console.log(currentUser);
-
+  // console.log(props.currentUser);
+  // const id = props.currentUser;
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -30,8 +30,6 @@ export const Modal = (props, { farm }) => {
       const id = userAuth.uid;
       setId(id);
     });
-
-    return unsubscribe;
   }, []);
 
   const initialFieldValues = {
