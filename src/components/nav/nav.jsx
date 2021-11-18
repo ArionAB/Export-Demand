@@ -1,15 +1,25 @@
 import React from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { farmers } from "../../pages/farmers/farmers";
 import { auth } from "../../firebase/firebase.utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "../nav/nav.styles.scss";
 
 export const Nav = ({ currentUser }) => {
-  console.log(currentUser);
-  /*  if (auth.signOut()) {
-    alert("Sign");
-  } */
+  const hamburger = <FontAwesomeIcon icon={faBars} />;
+  const myContainer = useRef(null);
+
+  function hamMenu() {
+    const ham = myContainer.current;
+    console.log(ham);
+    if (ham.className === "nav") {
+      ham.className += " responsive";
+    } else {
+      ham.className = "nav";
+    }
+  }
 
   return (
     <div className="nav">
@@ -20,32 +30,37 @@ export const Nav = ({ currentUser }) => {
           alt="Logo"
         ></img>
       </Link>
-      <div className="options">
-        <Link className="option" to="/">
-          Home
-        </Link>
-        <Link className="option" to="/contact">
-          Contact Us
-        </Link>
-
-        <Link className="option" to="/farmers">
-          Farmers
-        </Link>
-        <Link className="option" to="/goals">
-          Our Goals
-        </Link>
-        <Link className="option" to="/commerce">
-          Organic
-        </Link>
-        {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
-            Sign Out
-          </div>
-        ) : (
-          <Link className="option" to="/signin">
-            Sign In
+      <div className="mobile">
+        <div className="responsive" ref={myContainer}>
+          <Link className="option" to="/">
+            Home
           </Link>
-        )}
+          <Link className="option" to="/contact">
+            Contact Us
+          </Link>
+
+          <Link className="option" to="/farmers">
+            Farmers
+          </Link>
+          <Link className="option" to="/goals">
+            Our Goals
+          </Link>
+          <Link className="option" to="/commerce">
+            Organic
+          </Link>
+          {currentUser ? (
+            <div className="option" onClick={() => auth.signOut()}>
+              Sign Out
+            </div>
+          ) : (
+            <Link className="option" to="/signin">
+              Sign In
+            </Link>
+          )}
+        </div>
+        <a className="icon" onClick={hamMenu}>
+          {hamburger}
+        </a>
       </div>
     </div>
   );
