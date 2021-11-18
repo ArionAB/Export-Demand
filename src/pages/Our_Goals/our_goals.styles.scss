@@ -11,25 +11,21 @@
   height: 60vh;
 }
 
-#goals {
-  width: 35vw;
-  height: auto;
-}
-
 .goals {
   display: flex;
   flex-direction: column;
+  margin-top: 5em;
 }
 
 .plusAndTitle {
   display: flex;
   flex-direction: column;
 
-  background-color: rgb(233, 246, 251);
+  background-color: rgb(227, 236, 245);
   border: 5px solid white;
 
   div {
-    border: 1px solid grey;
+    border: 1px solid rgb(214, 214, 214);
     padding: 15px;
   }
   h3 {
@@ -37,6 +33,9 @@
   }
 }
 .plusAndTitle:hover {
+  cursor: pointer;
+}
+.add:hover {
   color: blue;
   cursor: pointer;
 }
@@ -45,6 +44,17 @@
   border-top: 10px solid white !important;
 
   background-color: white;
+  ul li a {
+    text-decoration: none;
+    font-size: x-large;
+  }
+  ul li {
+    text-decoration: none;
+    font-size: x-large;
+  }
+  ul li a:hover {
+    color: red;
+  }
 }
 
 .add {

@@ -58,8 +58,8 @@ const App = (props) => {
           <Route exact path="/signin" component={SignInSignUp} />
           <PostContextProvider>
             <Route exact path="/farmers/" component={Farmers} />
-            <Route path="*" component={noMatch} />
           </PostContextProvider>
+          <Route path="*" component={noMatch} />
         </Switch>
       </Router>
     </div>

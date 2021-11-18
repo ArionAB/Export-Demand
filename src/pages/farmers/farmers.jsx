@@ -7,7 +7,6 @@ import { auth } from "../../firebase/firebase.utils";
 import { Link } from "react-router-dom";
 
 import styles from "./farmers.styles.scss";
-import { DeleteModal } from "../../components/Modal/deleteModal";
 
 export const Farmers = () => {
   const { farmPosts } = useContext(PostContext);

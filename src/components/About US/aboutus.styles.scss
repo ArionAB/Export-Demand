@@ -8,6 +8,7 @@ img {
 .title {
   display: flex;
   justify-content: center;
+  margin: 50px 0;
 }
 
 .who_we_are {
@@ -91,6 +92,10 @@ img {
   justify-content: center;
   align-items: center;
 
+  h1 {
+    margin: 50px 0;
+  }
+
   .for_logos {
     display: flex;
     justify-content: space-evenly;
@@ -109,6 +114,10 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  h1 {
+    margin: 50px 0;
+  }
 
   img {
     border-radius: 50%;

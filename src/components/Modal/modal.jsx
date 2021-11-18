@@ -130,10 +130,12 @@ export const Modal = (props) => {
             value={values.email}
             required
           />
-          <button type="submit" value="Save">
-            Save
-          </button>
-          <button onClick={props.onClose}>Close</button>
+          <div className="modal-buttons">
+            <button type="submit" value="Save">
+              Add
+            </button>
+            <button onClick={props.onClose}>Close</button>
+          </div>
         </form>
       </div>
     </>
