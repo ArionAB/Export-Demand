@@ -54,12 +54,12 @@ const App = (props) => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/goals" component={Goals} />
+          <Route exact path="/signin" component={SignInSignUp} />
           <PostContextProvider>
-            <Route exact path="/goals" component={Goals} />
             <Route exact path="/farmers/" component={Farmers} />
-            <Route exact path="/signin" component={SignInSignUp} />
+            <Route path="*" component={noMatch} />
           </PostContextProvider>
-          <Route path="" component={noMatch} />
         </Switch>
       </Router>
     </div>

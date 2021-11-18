@@ -2,7 +2,7 @@ $font-size: 1.7vh;
 
 img {
   width: 50%;
-  height: 50vh;
+  // height: 50vh;
 }
 
 .title {
@@ -12,18 +12,18 @@ img {
 
 .who_we_are {
   display: flex;
+  /* flex-wrap: wrap; */
   width: 80%;
+  height: 80%;
   margin: 0 auto;
+  grid-gap: 30px;
+  overflow: hidden;
   gap: 30px;
 
   .article_right {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 56em;
-    height: 38em;
-    overflow: scroll;
   }
 
   h2 {
@@ -149,9 +149,92 @@ img {
   justify-content: space-evenly;
 
   height: 30vh;
-  background-color: olive;
+  background-image: url("https://www.agritechtomorrow.com/images/articles/11436.jpg");
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
 
-  button {
+  h1 {
+    color: white;
+  }
+  a.apply {
+    display: flex;
+    justify-content: center;
+  }
+  .apply {
     width: 10%;
+    box-shadow: 3px 4px 0px 0px #899599;
+    background-color: transparent;
+    border-radius: 15px;
+    border: 1px solid #d6bcd6;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #e1e2ed;
+
+    .apply:hover {
+      background-color: rgb(102, 102, 19);
+    }
+    .apply:active {
+      position: relative;
+      top: 1px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .AboutUS {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  img {
+    width: 100%;
+  }
+  .who_we_are {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .our_products {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .why_organic {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .farm_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin-right: 20px;
+    border-radius: 5%;
+    background-color: cornsilk;
+    margin-bottom: 50px;
+
+    .farmer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+      width: 50vw;
+      border-bottom: 10px solid #7c5252;
+      border-radius: 5%;
+      background-color: cornsilk;
+    }
+  }
+
+  .farmer img {
+    width: 30vw;
   }
 }

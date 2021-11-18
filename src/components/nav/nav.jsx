@@ -45,9 +45,7 @@ export const Nav = ({ currentUser }) => {
           <Link className="option" to="/goals">
             Our Goals
           </Link>
-          <Link className="option" to="/commerce">
-            Organic
-          </Link>
+
           {currentUser ? (
             <div className="option" onClick={() => auth.signOut()}>
               Sign Out

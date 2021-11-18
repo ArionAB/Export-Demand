@@ -1,5 +1,6 @@
 import styles from "../About US/aboutus.styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,20 +16,13 @@ export function AboutUS() {
             Cooperatives strive to maximize the benefits they generate for their
             members (which usually involves zero-profit operation). Agricultural
             cooperatives are therefore created in situations where farmers
-            cannot obtain essential services from IOFs (because the provision of
-            these services is judged to be unprofitable by the IOFs), or when
-            IOFs provide the services at disadvantageous terms to the farmers
-            (i.e., the services are available, but the profit-motivated prices
-            are too high for the farmers).
+            cannot obtain essential services from IOFs
             <p>
               The former situations are characterized in economic theory as
               market failure or missing services motive. The latter drive the
               creation of cooperatives as a competitive yardstick or as a means
               of allowing farmers to build countervailing market power to oppose
-              the IOFs.[1] The concept of competitive yardstick implies that
-              farmers, faced with unsatisfactory performance by IOFs, may form a
-              cooperative firm whose purpose is to force the IOFs, through
-              competition, to improve their service to farmers.
+              the IOFs.[1]
             </p>
           </p>
         </div>
@@ -150,7 +144,9 @@ export function AboutUS() {
       </div>
       <div className="footer">
         <h1>We Need More Hands!</h1>
-        <button className="apply">Apply</button>
+        <Link className="apply" to="/contact">
+          Apply
+        </Link>
       </div>
     </div>
   );
