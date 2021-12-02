@@ -1,6 +1,9 @@
 {
   "name": "export_demand",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "homepage": "https://ArionAB.github.io/Export-Demand",
   "dependencies": {
