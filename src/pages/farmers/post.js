@@ -1,11 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { FormInput } from "../../components/form-input/form-input";
-import { SignInSignUp } from "../sign_in_up/sign_in_up";
 import { getFirebase } from "../../firebase/firebase.utils";
 import { createUserProfileDocument, auth } from "../../firebase/firebase.utils";
-
-// import { DeleteModal } from "../../components/Modal/deleteModal";
 
 import styles from "./modal.styles.scss";
 
