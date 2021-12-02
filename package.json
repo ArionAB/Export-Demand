@@ -5,7 +5,7 @@
     "node": "14.x"
   },
   "private": true,
-  "homepage": "https://ArionAB.github.io/Export-Demand",
+  "homepage": "",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
